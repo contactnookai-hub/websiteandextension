@@ -1,0 +1,14 @@
+{
+  "name": "Nook: AI Answering Sidebar",
+  "short_name": "Nook",
+  "description": "Free Chrome extension that answers the question on your screen with your own Gemini.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#2f80d8",
+  "theme_color": "#2f80d8",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

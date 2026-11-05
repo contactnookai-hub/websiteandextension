@@ -3,14 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nook: the answer to any question, right on the page</title>
-  <meta name="description" content="Nook puts your own Gemini in Chrome's sidebar. One click reads the page, solves it, and fills the answer in. Free forever, no data collected." />
-  <meta property="og:title" content="Nook: AI answering sidebar for Chrome" />
-  <meta property="og:description" content="One click reads the page, asks your Gemini, and fills the answer in. Free forever." />
-  <meta property="og:image" content="assets/logo-new.png" />
+  <title>Nook: Free AI Answers on Any Page | Chrome Extension</title>
+  <meta name="description" content="Free Chrome extension that answers the question on your screen. One click asks your own Gemini, formats the answer for the site, and fills it in." />
+  <link rel="canonical" href="https://trynook.org/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#2f80d8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nook" />
+  <meta property="og:url" content="https://trynook.org/" />
+  <meta property="og:title" content="Nook: Get the answer to any question, right on the page" />
+  <meta property="og:description" content="Free Chrome extension. Press Option+Shift+A or right-click a question: Nook asks your own Gemini and fills the answer in." />
+  <meta property="og:image" content="https://trynook.org/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Nook: Get the answer to any question, right on the page. 100% free." />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nook: Get the answer to any question, right on the page" />
+  <meta name="twitter:description" content="Free Chrome extension. One click asks your own Gemini and fills the answer in." />
+  <meta name="twitter:image" content="https://trynook.org/assets/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Nook", "alternateName": "Nook | AI Answering Sidebar on Any Page", "description": "Free Chrome extension that answers the question on your screen. One click (or Option+Shift+A) asks your own Gemini, formats the answer for the site, and fills it in. Highlight a question and right-click Ask Nook for an answer bubble.", "applicationCategory": "EducationalApplication", "applicationSubCategory": "Browser extension", "operatingSystem": "Chrome", "url": "https://trynook.org/", "downloadUrl": "https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc", "installUrl": "https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc", "image": "https://trynook.org/assets/og-image.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Nook", "url": "https://trynook.org/"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Nook really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every feature is included, with no card and no API key. Nook uses the Gemini you already have with your Google account, so Gemini's own usage limits apply."}}, {"@type": "Question", "name": "Do I need an API key?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nook opens the real Gemini in Chrome's side panel, signed in with your own Google account."}}, {"@type": "Question", "name": "What data does Nook collect?", "acceptedAnswer": {"@type": "Answer", "text": "None. There's no Nook account, server or analytics. The screenshot goes from your browser to Gemini in your own Google account, and nowhere else."}}, {"@type": "Question", "name": "Which sites does it work on?", "acceptedAnswer": {"@type": "Answer", "text": "Any website. It has answer formats made for Khan Academy, IXL, DeltaMath, MathXL, Google Forms, Canvas, Quizlet, Quizizz, Kahoot and Blooket, and a general format for everything else."}}, {"@type": "Question", "name": "Does it submit answers for me?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nook fills in the answer and stops. You read it and press Check or Submit yourself."}}, {"@type": "Question", "name": "What if there's no answer box?", "acceptedAnswer": {"@type": "Answer", "text": "Nook copies the answer to your clipboard instead, so you can paste it anywhere with Ctrl+V (⌘V on Mac)."}}, {"@type": "Question", "name": "How do I sign in to Gemini?", "acceptedAnswer": {"@type": "Answer", "text": "Click the person icon at the top of the Nook sidebar. It opens Google sign-in in a new tab; once you're signed in, reload the sidebar."}}, {"@type": "Question", "name": "Can I change the shortcut?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It's ⌥⇧A on Mac and Alt+Shift+A on Windows by default. Change it any time at chrome://extensions/shortcuts."}}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
