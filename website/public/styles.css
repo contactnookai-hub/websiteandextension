@@ -630,13 +630,13 @@ footer { padding: 30px 0 60px; font-size: 14px; color: var(--muted); background:
 
 /* ——— Intro: the cursor clicks the keycap (about 1.5s), then it lifts away into the hero ——— */
 .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none;
-  background: linear-gradient(180deg, #2270c8, #2f80d8 45%, #4f9ae6); animation: introOut 1500ms linear forwards; }
-.intro-key { position: relative; width: 128px; animation: ikKey 1500ms linear forwards; }
+  background: linear-gradient(180deg, #2270c8, #2f80d8 45%, #4f9ae6); animation: introOut 2000ms linear forwards; }
+.intro-key { position: relative; width: 128px; animation: ikKey 2000ms linear forwards; }
 .intro-key img { display: block; }
-.ik-cap { width: 100%; height: auto; filter: drop-shadow(0 26px 34px rgba(8, 30, 80, 0.4)); transform-origin: 50% 100%; animation: ikCap 1500ms linear forwards; }
-.ik-cur { position: absolute; left: 70.8%; top: 66.9%; width: 23.3%; height: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3)); transform-origin: 8% 6%; animation: ikCur 1500ms linear forwards; }
-.ik-rays { position: absolute; left: 55.8%; top: 52.4%; width: 33.3%; height: auto; opacity: 0; animation: ikRays 1500ms linear forwards; }
-.intro-glow { position: absolute; left: 50%; top: 50%; width: 320%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,0.4), rgba(190,222,255,0.12) 45%, transparent 72%); animation: ikGlow 1500ms linear forwards; }
+.ik-cap { width: 100%; height: auto; filter: drop-shadow(0 26px 34px rgba(8, 30, 80, 0.4)); transform-origin: 50% 100%; animation: ikCap 2000ms linear forwards; }
+.ik-cur { position: absolute; left: 70.8%; top: 66.9%; width: 23.3%; height: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3)); transform-origin: 8% 6%; animation: ikCur 2000ms linear forwards; }
+.ik-rays { position: absolute; left: 55.8%; top: 52.4%; width: 33.3%; height: auto; opacity: 0; animation: ikRays 2000ms linear forwards; }
+.intro-glow { position: absolute; left: 50%; top: 50%; width: 320%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,0.4), rgba(190,222,255,0.12) 45%, transparent 72%); animation: ikGlow 2000ms linear forwards; }
 @keyframes introOut { 0%, 64% { opacity: 1; visibility: visible; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); } 100% { opacity: 0; visibility: hidden; } }
 @keyframes ikKey { 0%, 62% { transform: none; animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0); } 100% { transform: translateY(-44px) scale(0.9); } }
 @keyframes ikCap { 0% { opacity: 0; transform: translateY(10px) scale(0.92); animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }

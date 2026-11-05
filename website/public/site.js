@@ -94,14 +94,14 @@
     document.documentElement.classList.add("ready");
     $$("[data-hero]").forEach((el, i) => { el.style.setProperty("--d", `${80 + i * 110}ms`); el.classList.add("in"); });
   };
-  // The intro (pure CSS, about 1.5s) plays over the hero; the hero starts coming in as it lifts away.
+  // The intro (pure CSS, about 2s) plays over the hero; the hero starts coming in as it lifts away.
   // Fonts get at most 700ms, so a slow font never holds the page.
   const intro = $("#intro");
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   if (REDUCED) { heroIn(); if (intro) intro.remove(); }
   else {
-    Promise.all([Promise.race([document.fonts.ready, wait(700)]), wait(intro ? 950 : 0)]).then(() => requestAnimationFrame(heroIn));
-    if (intro) setTimeout(() => intro.remove(), 1600);
+    Promise.all([Promise.race([document.fonts.ready, wait(700)]), wait(intro ? 1270 : 0)]).then(() => requestAnimationFrame(heroIn));
+    if (intro) setTimeout(() => intro.remove(), 2100);
   }
 
   // ——— hero landscape: layers drift with scroll and pointer ———
