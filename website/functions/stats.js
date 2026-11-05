@@ -31,6 +31,7 @@ h2{font-size:16px;margin:0}small{color:#5b6475}@media(max-width:520px){.big{grid
 <h2>Last 14 days</h2><table><tr><th>Day</th><th>Views</th><th>Add to Chrome clicks</th></tr>${daily.results.map((d) => `<tr><td>${d.day}</td><td>${d.views}</td><td>${d.clicks}</td></tr>`).join("") || `<tr><td colspan="3">None yet</td></tr>`}</table>
 <h2>Clicks by button</h2><table><tr><th>Where</th><th>Clicks</th></tr>${rows("click")}</table>
 <h2>Views by page</h2><table><tr><th>Page</th><th>Views</th></tr>${rows("view")}</table>
+<p><small>Counted on Cloudflare: a Cloudflare Pages Function writes every visit and click to Cloudflare D1 (database <code>nook-stats</code>, account contact.nookai@gmail.com), and this page reads it straight from there. Visitors who block scripts aren't counted. To cross-check, Cloudflare's own dashboards: <a href="https://dash.cloudflare.com/?to=/:account/:zone/analytics/traffic&zone=trynook.org">Traffic analytics for trynook.org</a> (every request, measured at Cloudflare's network) and <a href="https://dash.cloudflare.com/?to=/:account/web-analytics">Web Analytics</a>.</small></p>
 </main></body></html>`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }

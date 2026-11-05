@@ -1,0 +1,5 @@
+# Scripts and styles revalidate on every visit, so fixes reach visitors right away.
+/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+/*.css
+  Cache-Control: public, max-age=0, must-revalidate
