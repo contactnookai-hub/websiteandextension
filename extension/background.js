@@ -4,6 +4,9 @@
 
 const ASK_MENU_ID = "nook-ask-selection";
 
+// When Nook is uninstalled, Chrome opens this page: it asks why, with a one-tap reason and a submit button.
+chrome.runtime.setUninstallURL(`https://trynook.org/uninstalled/?v=${chrome.runtime.getManifest().version}`).catch(() => {});
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({

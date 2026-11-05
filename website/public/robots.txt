@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /stats
 Disallow: /api/
+Disallow: /uninstalled/
 
 Sitemap: https://trynook.org/sitemap.xml
