@@ -22,4 +22,6 @@
   send("view", path);
   setInterval(() => { if (document.visibilityState === "visible") send("ping", path); }, 30000);
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") send("ping", path); });
+  // Closing the tab or leaving the page drops this visitor from the live count right away.
+  addEventListener("pagehide", () => send("leave", path));
 })();
