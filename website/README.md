@@ -26,3 +26,10 @@ Hosted on Cloudflare Pages, output directory `public`, no build command.
 - Git-connected: every push to `main` deploys.
 - Manual: `npx wrangler login`, check `npx wrangler whoami`, then `./deploy.sh` (project `nook`) or
   `./deploy.sh <project-name>`.
+
+## Visitor and click stats
+
+`functions/api/event.js` counts page views, live visitors (a random per-tab id pinged every 30s) and "Add to Chrome"
+clicks into the D1 database `nook-stats` (schema in `schema.sql`); no cookies, IPs or device details. `functions/stats.js`
+serves a private dashboard at `/stats?key=...`, where the key is the Pages secret `STATS_KEY` (kept out of this repo).
+Store links carry `utm_source=trynook.org&utm_content=<button>`, so the Chrome Web Store's own stats can attribute installs.

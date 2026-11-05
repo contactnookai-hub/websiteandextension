@@ -1,3 +1,9 @@
 name = "trynook"
 pages_build_output_dir = "public"
 compatibility_date = "2026-11-01"
+
+# Visit and "Add to Chrome" click counts (functions/api/event.js), read by the private /stats page.
+[[d1_databases]]
+binding = "DB"
+database_name = "nook-stats"
+database_id = "813de154-17af-4b3a-8ee2-68acd06a1bf2"

@@ -77,8 +77,36 @@
     history.replaceState(null, "", id);
   });
 
-  // ——— store links ———
-  $$("[data-store]").forEach((a) => { a.href = STORE; a.target = "_blank"; a.rel = "noopener"; });
+  // ——— visit counts (our own Cloudflare function: no cookies, nothing personal) ———
+  // A random id per tab feeds the live "on the site now" count; it lives only in this tab.
+  const tabId = (() => {
+    try {
+      const k = "nookTab";
+      if (!sessionStorage.getItem(k)) sessionStorage.setItem(k, crypto.randomUUID());
+      return sessionStorage.getItem(k);
+    } catch {
+      return crypto.randomUUID();
+    }
+  })();
+  const track = (kind, label = "") => {
+    if (!/^https?:$/.test(location.protocol) || /^(localhost|127\.)/.test(location.hostname)) return;
+    try {
+      navigator.sendBeacon(`/api/event?kind=${kind}&label=${encodeURIComponent(label)}&id=${tabId}`);
+    } catch {
+      /* counting is best-effort */
+    }
+  };
+  track("view", location.pathname);
+  setInterval(() => { if (document.visibilityState === "visible") track("ping"); }, 30000);
+
+  // ——— store links: tagged by where they sit (the Web Store's stats show installs by utm_content) and counted ———
+  $$("[data-store]").forEach((a) => {
+    const where = a.closest("nav") ? "nav" : a.closest("footer") ? "footer" : a.closest("section[id]")?.id || "hero";
+    a.href = `${STORE}?utm_source=trynook.org&utm_medium=website&utm_content=${where}`;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.addEventListener("click", () => track("click", where));
+  });
 
   // ——— the hero comes in once fonts are ready ———
   const heroIn = () => {
