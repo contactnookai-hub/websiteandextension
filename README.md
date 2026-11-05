@@ -5,7 +5,7 @@ press **What's the answer?** (or Option+Shift+A / Alt+Shift+A), or highlight a q
 and it reads the page, asks Gemini, formats the answer for that site, and fills it in. It never presses Check or Submit.
 
 - Chrome Web Store: https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc
-- Website: https://usenook.pages.dev
+- Website: https://trynook.pages.dev
 
 ## Layout
 
