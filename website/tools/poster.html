@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- The tour video's poster. Render at 1920x1080 and save as public/assets/nook-tour-poster-v2.jpg.
+     The site draws its own play button at 50% / 69%, so that spot is left clear. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; }
+  .p { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #fff;
+       background: linear-gradient(180deg, #2270c8 0%, #2f80d8 30%, #4f9ae6 52%, #79b8f0 72%, #c4e0fa 100%); }
+  .sun { position: absolute; left: 50%; top: -420px; width: 1900px; height: 1100px; margin-left: -950px; border-radius: 50%;
+         background: radial-gradient(closest-side, rgba(255,255,255,0.34), rgba(255,255,255,0.08) 55%, transparent 75%); }
+  .beam { position: absolute; top: -10%; width: 300px; height: 120%; background: linear-gradient(180deg, rgba(255,255,255,0.22), transparent 70%); filter: blur(24px); transform-origin: 50% 0; }
+  .ly { position: absolute; left: -60px; width: 2040px; height: auto; bottom: -40px; }
+  .ly.near { bottom: -70px; }
+  .ly.front { bottom: -150px; }
+  .key { position: absolute; left: 50%; top: 92px; width: 176px; margin-left: -88px; filter: drop-shadow(0 30px 40px rgba(10, 40, 100, 0.35)); }
+  .key img { width: 100%; display: block; }
+  .key .cur { position: absolute; left: 70.8%; top: 66.9%; width: 23.3%; }
+  .key .rays { position: absolute; left: 55.8%; top: 52.4%; width: 33.3%; }
+  h1 { position: absolute; left: 0; right: 0; top: 318px; margin: 0; text-align: center; font: 400 136px/1 "Instrument Serif", serif; letter-spacing: -0.015em; text-shadow: 0 4px 40px rgba(10, 40, 100, 0.22); }
+  h1 em { color: #111; }
+  .sub { position: absolute; left: 0; right: 0; top: 478px; text-align: center; font-size: 30px; color: rgba(255,255,255,0.92); }
+  .chips { position: absolute; left: 0; right: 0; top: 540px; display: flex; justify-content: center; gap: 14px; }
+  .chips span { height: 48px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; font-size: 21px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.45); }
+</style>
+</head>
+<body>
+  <div class="p">
+    <i class="sun"></i>
+    <i class="beam" style="left:640px;transform:rotate(14deg)"></i>
+    <i class="beam" style="left:1100px;transform:rotate(-10deg);width:360px;opacity:.8"></i>
+    <img class="ly" src="../public/assets/scene/far.svg" alt="" />
+    <img class="ly" src="../public/assets/scene/mid.svg" alt="" />
+    <img class="ly" src="../public/assets/scene/clouds-back.svg" alt="" />
+    <img class="ly near" src="../public/assets/scene/near.svg" alt="" />
+    <img class="ly front" src="../public/assets/scene/clouds-front.svg" alt="" />
+    <div class="key"><img src="../public/assets/scene/keycap.svg" alt="" /><img class="rays" src="../public/assets/scene/rays.svg" alt="" /><img class="cur" src="../public/assets/scene/cursor.svg" alt="" /></div>
+    <h1>Watch Nook in <em>38 seconds</em></h1>
+    <div class="sub">One click, then highlight to ask.</div>
+    <div class="chips"><span>With sound</span></div>
+  </div>
+</body>
+</html>

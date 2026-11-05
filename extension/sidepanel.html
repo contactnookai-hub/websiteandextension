@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nook</title>
+    <link rel="preconnect" href="https://gemini.google.com" />
+    <link rel="stylesheet" href="sidepanel.css" />
+    <script src="splash-boot.js"></script>
+  </head>
+  <body>
+    <div id="splash" class="splash">
+      <img class="splash-logo" src="icons/icon128.png" alt="" width="88" height="88" />
+      <p class="splash-title">Nook | AI Answering Sidebar on Any Page</p>
+      <div class="splash-spin" aria-hidden="true"></div>
+    </div>
+    <iframe
+      id="gemini-frame"
+      class="gemini-frame"
+      data-tour="gemini"
+      data-src="https://gemini.google.com/app"
+      allow="clipboard-read; clipboard-write; microphone"
+      title="Gemini"
+    ></iframe>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.7 4.6 3.4 7.3 8 8-4.6.7-7.3 3.4-8 8-.7-4.6-3.4-7.3-8-8 4.6-.7 7.3-3.4 8-8z" /></symbol>
+        <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+        <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4" /><path d="M12 17h.01" /></symbol>
+        <symbol id="i-reload" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7" /><path d="M20 4v5h-5" /></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" /></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1.2-3.5 3.8-5 7-5s5.8 1.5 7 5" /></symbol>
+        <symbol id="i-fill" viewBox="0 0 24 24"><path d="M4 17h16" /><path d="M9 13V8.5a3 3 0 0 1 6 0V13" /><path d="M12 3v3" /><path d="M7 20h10" /></symbol>
+      </defs>
+    </svg>
+
+    <header class="toolbar">
+      <div class="toolbar-top">
+        <div class="wordmark">
+          <span class="wordmark-dot" aria-hidden="true"></span>
+          Nook
+        </div>
+        <div class="toolbar-icons" data-tour="icons">
+          <button type="button" id="help-btn" class="icon-btn" title="How it works" aria-label="How it works">
+            <svg class="icon"><use href="#i-help" /></svg>
+          </button>
+          <button type="button" id="reload-btn" class="icon-btn" title="Reload Gemini" aria-label="Reload Gemini">
+            <svg class="icon"><use href="#i-reload" /></svg>
+          </button>
+          <button type="button" id="signin-btn" class="icon-btn" title="Sign in to Google in a new tab" aria-label="Sign in">
+            <svg class="icon"><use href="#i-user" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" id="answer-btn" class="btn btn-primary" data-tour="answer">
+        <svg class="icon"><use href="#i-spark" /></svg>
+        <span class="btn-label">What's the answer?</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+      <p class="hotkey-note" id="hotkey-note">
+        <span>Hotkey</span>
+        <span id="hotkey-keys"><kbd>Alt</kbd><kbd>Shift</kbd><kbd>A</kbd></span>
+        <span class="hotkey-platform" id="hotkey-platform" hidden>Alt+Shift+A on Windows</span>
+      </p>
+
+      <div class="toolbar-row">
+        <button type="button" id="screenshot-btn" class="btn btn-secondary" data-tour="screenshot">
+          <svg class="icon"><use href="#i-camera" /></svg>
+          Screenshot
+        </button>
+        <label class="setting" data-tour="autofill">
+          <span>Auto fill</span>
+          <input type="checkbox" id="autofill-toggle" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+        <label class="setting" data-tour="autocopy">
+          <span>Auto copy</span>
+          <input type="checkbox" id="autocopy-toggle" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div id="status-bar" class="status" role="status" aria-live="polite"></div>
+    </header>
+
+    <div id="answer-bar" class="answer" hidden data-tour="answercard">
+      <button type="button" id="answer-text" class="answer-value" title="Click to copy"></button>
+      <button type="button" id="fill-answer-btn" class="answer-action" data-tour="fillbtn" aria-label="Fill answer into the page">
+        <svg class="icon"><use href="#i-fill" /></svg>
+        <span>Fill</span>
+      </button>
+      <button type="button" id="copy-answer-btn" class="answer-copy answer-action" aria-label="Copy answer">
+        <svg class="icon icon-copy"><use href="#i-copy" /></svg>
+        <svg class="icon icon-check"><use href="#i-check" /></svg>
+        <span class="answer-copy-label">Copy</span>
+      </button>
+    </div>
+
+
+    <div id="onboarding" class="onboarding" hidden>
+      <div class="card" role="dialog" aria-modal="true" aria-labelledby="card-title">
+        <div id="card-content" class="card-content"></div>
+        <div class="card-footer">
+          <div id="card-dots" class="dots" aria-hidden="true"></div>
+          <div class="card-nav">
+            <button type="button" id="card-skip" class="text-btn">Skip</button>
+            <button type="button" id="card-next" class="btn btn-primary btn-compact">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tour" class="tour" hidden>
+      <div class="tour-scrim"></div>
+      <div id="tour-tip" class="tour-tip" role="dialog" aria-modal="true" aria-labelledby="tour-title">
+        <div class="tour-step" id="tour-step"></div>
+        <h3 id="tour-title" class="tour-title"></h3>
+        <p id="tour-body" class="tour-body"></p>
+        <div class="tour-nav">
+          <button type="button" id="tour-skip" class="text-btn">Skip</button>
+          <button type="button" id="tour-next" class="btn btn-primary btn-compact">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="page-agent.js"></script>
+    <script defer src="page-fill.js"></script>
+    <script defer src="onboarding.js"></script>
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>

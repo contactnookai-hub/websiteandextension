@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nook: the answer to any question, right on the page</title>
+  <meta name="description" content="Nook puts your own Gemini in Chrome's sidebar. One click reads the page, solves it, and fills the answer in. Free forever, no data collected." />
+  <meta property="og:title" content="Nook: AI answering sidebar for Chrome" />
+  <meta property="og:description" content="One click reads the page, asks your Gemini, and fills the answer in. Free forever." />
+  <meta property="og:image" content="assets/logo-new.png" />
+  <meta name="theme-color" content="#2f80d8" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- the Nook keycap, drawn after the new logo -->
+      <symbol id="logo" viewBox="0 0 120 120">
+        <rect x="4" y="8" width="104" height="102" rx="27" fill="#0f0f11" />
+        <rect x="4" y="4" width="104" height="100" rx="27" fill="#1c1c1f" />
+        <rect x="11.5" y="10" width="89" height="86" rx="20" fill="#19191c" stroke="#3a3a40" stroke-width="2.4" />
+        <path d="M33 32h14l18 26V32h14v42H65L47 48v26H33z" fill="#eef0f6" stroke="#eef0f6" stroke-width="3" stroke-linejoin="round" />
+        <path d="M50 58l7 4v10l-7-4z" fill="#5b8def" />
+        <g stroke="#7fb0ff" stroke-width="3.6" stroke-linecap="round">
+          <path d="M86 79v-6" /><path d="M79 85h-6" /><path d="M80.5 79.5l-4-4" /><path d="M91.5 79.5l4-4" />
+        </g>
+        <path d="M87 85l23 9.5-9 3 6.5 7.5-5 4.5-6.5-7.5-4.5 8.5z" fill="#f4f6fb" stroke="#111" stroke-width="2.6" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.7 4.6 3.4 7.3 8 8-4.6.7-7.3 3.4-8 8-.7-4.6-3.4-7.3-8-8 4.6-.7 7.3-3.4 8-8z" /></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4" /><path d="M12 17h.01" /></symbol>
+      <symbol id="i-reload" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7" /><path d="M20 4v5h-5" /></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1.2-3.5 3.8-5 7-5s5.8 1.5 7 5" /></symbol>
+      <symbol id="i-fill" viewBox="0 0 24 24"><path d="M4 17h16" /><path d="M9 13V8.5a3 3 0 0 1 6 0V13" /><path d="M12 3v3" /><path d="M7 20h10" /></symbol>
+      <symbol id="i-chrome" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3.6" /><path d="M12 8.4h8.2M8.9 13.8 4.8 6.7M15.1 13.8 11 20.9" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /><path d="M12 14.5v2.5" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8.2-6.3 1.4L9.6 19z" /></symbol>
+      <linearGradient id="gemgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df5" /><stop offset=".55" stop-color="#9b72cb" /><stop offset="1" stop-color="#d96570" /></linearGradient>
+    </defs>
+  </svg>
+
+  <!-- First open: the cursor clicks the keycap, then the intro lifts away into the hero -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-key">
+      <i class="intro-glow"></i>
+      <img class="ik-cap" src="assets/scene/keycap.svg" alt="" />
+      <img class="ik-rays" src="assets/scene/rays.svg" alt="" />
+      <img class="ik-cur" src="assets/scene/cursor.svg" alt="" />
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top"><svg viewBox="0 0 120 120" width="30" height="30"><use href="#logo" /></svg>Nook</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#highlight">Highlight</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="pill pill-dark pill-sm" data-store href="https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc" target="_blank" rel="noopener">Add to Chrome</a>
+  </nav>
+
+  <main id="top">
+    <!-- ——— Hero: sky, mountains, the keycap among the clouds ——— -->
+    <section class="hero" id="hero">
+      <div class="sky" aria-hidden="true"><i class="sun"></i></div>
+      <div class="beams" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="ln l1"></i><i class="ln l2"></i></div>
+
+      <div class="hero-copy">
+        <span class="badge" data-hero><span class="badge-new">New in 6.0</span><span class="dot"></span><b>100% free</b><span class="badge-sep"></span>No sign-up, no API key</span>
+        <h1 data-hero>Get the answer to any <span class="nw"><span class="rot" id="rot"><span class="on">question</span><span>quiz</span><span>worksheet</span><span>assignment</span><span>problem</span></span>,</span> right on the page.</h1>
+        <p class="lede" data-hero>Nook puts your own Gemini in Chrome's sidebar. Click <b>What's the answer?</b> and it reads the page, solves it, and fills the answer in. You just press Check.</p>
+        <div class="cta-row" data-hero>
+          <a class="pill pill-dark" data-store href="https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc" target="_blank" rel="noopener"><span>Add to Chrome<span class="pill-free"> — it's free</span></span><svg class="ic"><use href="#i-arrow" /></svg></a>
+          <a class="pill pill-ghost" href="#demo">See it work</a>
+        </div>
+        <div class="formats" data-hero>
+          <span class="formats-lab">Formats answers for</span>
+          <ul class="formats-list">
+            <li><span class="lg lg-khan-academy"><img src="assets/logos/khan-academy.svg" alt="" />Khan Academy</span></li>
+            <li><span class="lg lg-word lg-ixl"><img src="assets/logos/ixl.svg" alt="IXL" /></span></li>
+            <li><span class="lg lg-deltamath"><img src="assets/logos/deltamath.svg" alt="" />DeltaMath</span></li>
+            <li><span class="lg lg-pearson"><img src="assets/logos/pearson.svg" alt="" />MathXL</span></li>
+            <li><span class="lg lg-google-forms"><img src="assets/logos/google-forms.svg" alt="" />Google Forms</span></li>
+            <li><span class="lg lg-canvas"><img src="assets/logos/canvas.svg" alt="" />Canvas</span></li>
+            <li><span class="lg lg-quizlet"><img src="assets/logos/quizlet.svg" alt="" />Quizlet</span></li>
+            <li><span class="lg lg-word lg-quizizz"><img src="assets/logos/quizizz.png" alt="Quizizz" /></span></li>
+            <li><span class="lg lg-kahoot"><img src="assets/logos/kahoot.svg" alt="" />Kahoot!</span></li>
+            <li><span class="lg lg-word lg-blooket"><img src="assets/logos/blooket.svg" alt="Blooket" /></span></li>
+            <li><span class="lg lg-more">and more</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero-demo" id="demo">
+        <div class="scene" id="scene" aria-hidden="true">
+          <img class="ly" data-depth="0.3" data-mx="6" src="assets/scene/far.svg" alt="" />
+          <img class="ly" data-depth="0.22" data-mx="12" src="assets/scene/mid.svg" alt="" />
+          <img class="ly" data-depth="0.14" data-mx="16" src="assets/scene/clouds-back.svg" alt="" />
+          <img class="ly" data-depth="0.08" data-mx="26" src="assets/scene/near.svg" alt="" />
+          <img class="ly ly-front" data-depth="0" data-mx="30" src="assets/scene/clouds-front.svg" alt="" />
+          <canvas class="sparkles" id="sparkles"></canvas>
+        </div>
+        <div class="stage-wrap" id="stage-wrap" data-hero>
+          <div class="glass tilt" id="hero-tilt">
+            <div class="stage-frame" id="hero-frame">
+              <div class="wallpaper"></div>
+              <div class="stage" id="hero-stage"></div>
+            </div>
+          </div>
+        </div>
+        <div class="steps-strip" id="hero-steps">
+          <div class="ss"><b>01</b><span>Click</span><i class="bar"></i></div>
+          <div class="ss"><b>02</b><span>Screenshot</span><i class="bar"></i></div>
+          <div class="ss"><b>03</b><span>Ask Gemini</span><i class="bar"></i></div>
+          <div class="ss"><b>04</b><span>Fill it in</span><i class="bar"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Statement ——— -->
+    <section class="statement">
+      <div class="wrap">
+        <p id="statement">Stop copying questions into a chatbot and pasting answers back. Nook reads the page, asks Gemini, and puts the answer right where it goes.</p>
+      </div>
+    </section>
+
+    <!-- ——— How it works ——— -->
+    <section class="sec" id="how">
+      <div class="wrap">
+        <div class="sec-head">
+          <div><span class="eyebrow" data-reveal>How it works</span><h2 data-reveal style="--d:60ms">Click. Solve. <em>Done.</em></h2></div>
+          <p data-reveal style="--d:120ms">Three steps, all inside the tab you're already on. Nothing to copy, nothing to switch to.</p>
+        </div>
+        <div class="how">
+          <div class="steps" id="steps" data-reveal>
+            <button class="step on"><i class="prog"></i><span class="n">1</span><h3>Click What's the answer?</h3><p>Or press <kbd>⌥</kbd><kbd>⇧</kbd><kbd>A</kbd> (Alt+Shift+A on Windows). Nook opens in the sidebar and gets to work.</p></button>
+            <button class="step"><i class="prog"></i><span class="n">2</span><h3>Nook asks your Gemini</h3><p>It screenshots the page and asks Gemini, signed in with your own Google account, for the answer in this site's format.</p></button>
+            <button class="step"><i class="prog"></i><span class="n">3</span><h3>It fills it in</h3><p>The answer goes into the box, or the right choice gets picked. Nook never submits: you check it and press Check.</p></button>
+          </div>
+          <div class="vis how-vis" id="how-vis" data-reveal style="--d:120ms">
+            <div class="wallpaper"></div>
+            <div class="mini" id="mini"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Highlight to ask (v6) ——— -->
+    <section class="sec tint" id="highlight">
+      <div class="wrap hl-grid">
+        <div class="hl-copy">
+          <span class="eyebrow new" data-reveal><span class="dot"></span>New in 6.0</span>
+          <h2 data-reveal style="--d:60ms">Or just <em>highlight it.</em></h2>
+          <p data-reveal style="--d:120ms">Select a question, right-click, and pick Ask Nook. The answer pops up right next to it and goes into the box after the question.</p>
+          <ol class="hl-list" data-reveal style="--d:180ms">
+            <li><b>1</b>Highlight the question</li>
+            <li><b>2</b>Right-click, then Ask Nook</li>
+            <li><b>3</b>The answer appears and fills itself in</li>
+          </ol>
+        </div>
+        <div class="vis hl-vis" id="hl-vis" data-reveal style="--d:120ms">
+          <div class="wallpaper"></div>
+          <div class="mini" id="hl-mini"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Works everywhere ——— -->
+    <section class="sec" id="sites">
+      <div class="wrap center">
+        <span class="eyebrow" data-reveal>Works everywhere</span>
+        <h2 data-reveal style="--d:60ms">Formats the answer for <em>the site you're on.</em></h2>
+        <p class="sub" data-reveal style="--d:120ms">Khan Academy wants <code>4x^3cos(x^4)</code>. Google Forms wants the exact choice. Nook knows the difference, and has a general format for every other site.</p>
+      </div>
+      <div class="marquee" data-reveal style="--d:160ms"><div class="track" id="track-a"></div></div>
+      <div class="marquee" data-reveal style="margin-top:6px;--d:220ms"><div class="track rev" id="track-b"></div></div>
+      <div class="wrap">
+        <div class="fmt" id="fmt" data-reveal>
+          <div class="fmt-top" id="fmt-tabs"></div>
+          <div class="fmt-out"><span class="lab">Answer</span><span class="val" id="fmt-val"><span></span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Features ——— -->
+    <section class="sec tint" id="features">
+      <div class="wrap">
+        <div class="sec-head">
+          <div><span class="eyebrow" data-reveal>Features</span><h2 data-reveal style="--d:60ms">Everything happens <em>where you're working.</em></h2></div>
+          <p data-reveal style="--d:120ms">No new tab, no copy and paste. Nook lives in the sidebar and works on the page in front of you.</p>
+        </div>
+        <div class="frows">
+          <article class="frow" data-reveal>
+            <div class="frow-copy">
+              <span class="fnum">01</span>
+              <h3>Auto fill</h3>
+              <p>Nook types the answer into the page and picks the right choice on multiple choice. Then it stops, so you can check it.</p>
+              <ul class="fpoints"><li>Answer boxes, math boxes included</li><li>Multiple choice and checkboxes</li><li>Dropdowns</li></ul>
+            </div>
+            <div class="frow-vis vis">
+              <div class="wallpaper"></div>
+              <div class="fv-fill">
+                <div class="fv-card">
+                  <div class="fv-eb">CHAIN RULE</div>
+                  <div class="fv-q">Let <i>F</i>(<i>x</i>) = sin(<i>x</i><sup>4</sup>). Find <i>F</i>′(<i>x</i>).</div>
+                  <div class="fv-row"><span><i>F</i>′(<i>x</i>) =</span><div class="fv-in"><span>4x^3cos(x^4)</span></div></div>
+                  <div class="fv-ok"><i></i>Filled in. Check it, then press Check.</div>
+                </div>
+                <div class="pl fv-toggle">Auto fill<span class="sw on"><i></i></span></div>
+              </div>
+            </div>
+          </article>
+          <article class="frow flip" data-reveal>
+            <div class="frow-copy">
+              <span class="fnum">02</span>
+              <h3>Copy fallback</h3>
+              <p>No box to type into? Nook copies the answer instead, so you can paste it wherever it goes.</p>
+              <ul class="fpoints"><li>Copied to your clipboard</li><li>Paste with Ctrl+V (⌘V on Mac)</li></ul>
+            </div>
+            <div class="frow-vis vis">
+              <div class="wallpaper"></div>
+              <div class="fv-copy">
+                <div class="v-copy" id="vcopy"><span class="v">4x^3cos(x^4)</span><span class="a"><span class="no"><svg class="ic" style="width:15px;height:15px"><use href="#i-copy" /></svg>Copy</span><span class="ok"><svg class="ic" style="width:15px;height:15px"><use href="#i-check" /></svg>Copied</span></span></div>
+                <div class="fv-paste"><span class="fv-lab">Your answer</span><span class="fv-pasted">4x^3cos(x^4)</span><span class="fv-keys"><kbd>⌘</kbd><kbd>V</kbd></span></div>
+              </div>
+            </div>
+          </article>
+          <article class="frow" data-reveal>
+            <div class="frow-copy">
+              <span class="fnum">03</span>
+              <h3>Your own Gemini</h3>
+              <p>The real Gemini, signed in with your Google account, always one glance away in the sidebar.</p>
+              <ul class="fpoints"><li>No API key</li><li>Your own Google account</li><li>Ask anything, any time</li></ul>
+            </div>
+            <div class="frow-vis vis">
+              <div class="wallpaper"></div>
+              <div class="fv-gem"><div class="v-gem"><div class="gem-head"><div class="bars"></div><span>Gemini</span><span class="m">Flash ▾</span><div class="av"></div></div><div class="hi"><svg viewBox="0 0 24 24"><use href="#i-spark" fill="url(#gemgrad)" /></svg>Hi, let's get into it</div><div class="ginput">+&nbsp;&nbsp;&nbsp;Ask Gemini</div></div></div>
+            </div>
+          </article>
+          <article class="frow flip" data-reveal>
+            <div class="frow-copy">
+              <span class="fnum">04</span>
+              <h3>No data collected</h3>
+              <p>Everything stays between you, Gemini and your Google account. Nook never sees a copy.</p>
+              <ul class="fpoints"><li>No Nook account</li><li>No server</li><li>No analytics</li></ul>
+            </div>
+            <div class="frow-vis vis">
+              <div class="wallpaper"></div>
+              <div class="fv-lock">
+                <div class="v-lock"><svg class="ic"><use href="#i-lock" /></svg></div>
+                <span class="fv-tag t1">No account</span><span class="fv-tag t2">No server</span><span class="fv-tag t3">No analytics</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="chips" data-reveal>
+          <div class="chip"><span class="chip-i chip-keys"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>A</kbd></span><div><h4>One shortcut</h4><p>From any tab. Alt+Shift+A on Windows.</p></div></div>
+          <div class="chip"><span class="chip-i"><svg class="ic"><use href="#i-camera" /></svg></span><div><h4>Screenshot mode</h4><p>Grab the screen and ask Gemini your own question.</p></div></div>
+          <div class="chip"><span class="chip-i"><svg class="ic"><use href="#i-cursor" /></svg></span><div><h4>You stay in charge</h4><p>It never presses Check or Submit for you.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Video ——— -->
+    <section class="sec" id="watch">
+      <div class="wrap center">
+        <span class="eyebrow" data-reveal>Watch</span>
+        <h2 data-reveal style="--d:60ms">See it in <em>38 seconds.</em></h2>
+        <div class="video-sky" data-reveal style="--d:120ms">
+          <div class="video-sky-bg" aria-hidden="true"><img src="assets/scene/far.svg" alt="" /><img src="assets/scene/clouds-back.svg" alt="" /></div>
+          <div class="video-frame" id="video-frame">
+            <video id="tour" preload="none" playsinline poster="assets/nook-tour-poster-v2.jpg" src="assets/nook-tour.mp4"></video>
+            <img class="video-poster" src="assets/nook-tour-poster-v2.jpg" alt="" />
+            <button class="play" id="play" aria-label="Play the Nook tour, 38 seconds, with sound"><span class="play-btn"><svg><use href="#i-play" /></svg></span></button>
+          </div>
+          <div class="video-caps"><span><b>0:38</b></span><span>With sound</span><span>One click, then highlight to ask</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Free ——— -->
+    <section class="sec" id="free">
+      <div class="wrap">
+        <div class="free" data-reveal>
+          <div class="free-sky" aria-hidden="true"><img src="assets/scene/far.svg" alt="" /><img src="assets/scene/clouds-back.svg" alt="" /></div>
+          <div class="free-copy">
+            <span class="badge"><span class="dot"></span>Free</span>
+            <h2>Free. <em>Forever.</em></h2>
+            <p>No card, no API key, no sign-up. Just the Google account you already have.</p>
+            <a class="pill pill-dark" data-store href="https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc" target="_blank" rel="noopener">Add to Chrome<svg class="ic"><use href="#i-arrow" /></svg></a>
+          </div>
+          <ul class="free-list">
+            <li><svg class="ic"><use href="#i-check" /></svg>One-click answers</li>
+            <li><svg class="ic"><use href="#i-check" /></svg>Auto fill on the page</li>
+            <li><svg class="ic"><use href="#i-check" /></svg>Highlight and Ask Nook</li>
+            <li><svg class="ic"><use href="#i-check" /></svg>The ⌥⇧A shortcut</li>
+            <li><svg class="ic"><use href="#i-check" /></svg>Screenshot mode</li>
+            <li><svg class="ic"><use href="#i-check" /></svg>Your own Gemini, always there</li>
+          </ul>
+        </div>
+        <p class="free-note" data-reveal>Nook collects no data. Everything stays between you, Gemini, and your Google account.</p>
+      </div>
+    </section>
+
+    <!-- ——— FAQ ——— -->
+    <section class="sec" id="faq">
+      <div class="wrap faq-grid">
+        <div>
+          <span class="eyebrow" data-reveal>FAQ</span>
+          <h2 data-reveal style="--d:60ms">Questions, <em>answered.</em></h2>
+        </div>
+        <div class="faq" data-reveal style="--d:80ms">
+          <div class="qa"><button>Is Nook really free?<span class="pm"></span></button><div class="ans"><p>Yes. Every feature is included, with no card and no API key. Nook uses the Gemini you already have with your Google account, so Gemini's own usage limits apply.</p></div></div>
+          <div class="qa"><button>Do I need an API key?<span class="pm"></span></button><div class="ans"><p>No. Nook opens the real Gemini in Chrome's side panel, signed in with your own Google account.</p></div></div>
+          <div class="qa"><button>What data does Nook collect?<span class="pm"></span></button><div class="ans"><p>None. There's no Nook account, server or analytics. The screenshot goes from your browser to Gemini in your own Google account, and nowhere else.</p></div></div>
+          <div class="qa"><button>Which sites does it work on?<span class="pm"></span></button><div class="ans"><p>Any website. It has answer formats made for Khan Academy, IXL, DeltaMath, MathXL, Google Forms, Canvas, Quizlet, Quizizz, Kahoot and Blooket, and a general format for everything else.</p></div></div>
+          <div class="qa"><button>Does it submit answers for me?<span class="pm"></span></button><div class="ans"><p>No. Nook fills in the answer and stops. You read it and press Check or Submit yourself.</p></div></div>
+          <div class="qa"><button>What if there's no answer box?<span class="pm"></span></button><div class="ans"><p>Nook copies the answer to your clipboard instead, so you can paste it anywhere with Ctrl+V (⌘V on Mac).</p></div></div>
+          <div class="qa"><button>How do I sign in to Gemini?<span class="pm"></span></button><div class="ans"><p>Click the person icon at the top of the Nook sidebar. It opens Google sign-in in a new tab; once you're signed in, reload the sidebar.</p></div></div>
+          <div class="qa"><button>Can I change the shortcut?<span class="pm"></span></button><div class="ans"><p>Yes. It's ⌥⇧A on Mac and Alt+Shift+A on Windows by default. Change it any time at chrome://extensions/shortcuts.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— Final CTA: back to the sky ——— -->
+    <section class="final" id="final">
+      <div class="sky" aria-hidden="true"><i class="sun"></i></div>
+      <div class="wrap final-copy">
+        <h2 data-reveal>Press <span class="fk" id="fk"><span class="kc">⌥</span><span class="kc">⇧</span><span class="kc">A</span></span><br />and get the answer.</h2>
+        <div class="cta-row" data-reveal style="--d:120ms">
+          <a class="pill pill-dark" data-store href="https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc" target="_blank" rel="noopener">Add to Chrome<svg class="ic"><use href="#i-arrow" /></svg></a>
+          <a class="pill pill-ghost" href="#how">How it works</a>
+        </div>
+        <div class="fine" data-reveal style="--d:180ms"><span>Free forever</span><i></i><span>No data collected</span><i></i><span>Uses your own Google account</span></div>
+      </div>
+      <div class="final-scene" aria-hidden="true">
+        <img class="ly" data-depth="0.16" src="assets/scene/far.svg" alt="" />
+        <img class="ly" data-depth="0.1" src="assets/scene/mid.svg" alt="" />
+        <img class="ly" data-depth="0.05" src="assets/scene/clouds-back.svg" alt="" />
+        <div class="ly monument-wrap" data-depth="0.06">
+          <div class="monument">
+            <i class="halo"></i>
+            <i class="ripple"></i><i class="ripple r2"></i>
+            <div class="mono-float">
+              <img class="keycap" src="assets/scene/keycap.svg" alt="" />
+              <img class="rays" src="assets/scene/rays.svg" alt="" />
+              <img class="mcur" src="assets/scene/cursor.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <img class="ly" data-depth="0.03" src="assets/scene/near.svg" alt="" />
+        <img class="ly" src="assets/scene/clouds-front.svg" alt="" />
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top"><svg viewBox="0 0 120 120" width="30" height="30"><use href="#logo" /></svg>Nook</a>
+          <p class="small">AI answering sidebar on any page. Free forever, no data collected.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#highlight">Highlight to ask</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Get Nook</h4>
+          <a data-store href="https://chromewebstore.google.com/detail/nook-ai-answering-sidebar/fpoojjlpjldmeamnjhbmkkokjlfhdelc" target="_blank" rel="noopener">Chrome Web Store</a>
+          <a href="privacy/">Privacy policy</a>
+        </div>
+      </div>
+      <div class="legal"><span>© 2026 Nook</span><span>Not affiliated with Google. Gemini is a trademark of Google LLC.<br />Logos are trademarks of their respective owners. Nook is not affiliated with or endorsed by them.</span></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous"></script>
+  <script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nook privacy policy</title>
+  <meta name="description" content="Privacy policy for the Nook Chrome extension.">
+  <style>
+    :root {
+      color-scheme: light;
+      --text: #1a1d23;
+      --muted: #4d5563;
+      --line: #e2e5ea;
+      --bg: #f7f8fa;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 17px/1.55 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+    main {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 2.25rem 1.75rem 2.5rem;
+    }
+    h1 {
+      font: 600 1.75rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      margin: 0 0 0.35rem;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      font: 0.9rem/1.4 ui-sans-serif, system-ui, sans-serif;
+    }
+    h2 {
+      font: 600 1.05rem/1.3 ui-sans-serif, system-ui, sans-serif;
+      margin: 1.75rem 0 0.45rem;
+    }
+    p, li { margin: 0.45rem 0; }
+    ul { padding-left: 1.2rem; }
+    a { color: #1a4fbf; }
+    strong { font-weight: 650; }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <h1>Privacy policy for Nook</h1>
+      <p class="updated">Last updated September 30, 2026</p>
+
+      <p>Nook is a Chrome extension (“Nook | AI Answering Sidebar on Any Page”). This policy describes what Nook does with information on your device and who else receives it. The developer of Nook does not run an account system, a server, ads, or analytics for this extension.</p>
+
+      <h2>What stays on your device</h2>
+      <p>Nook saves three settings in Chrome’s local extension storage on your computer:</p>
+      <ul>
+        <li>whether Auto fill is on</li>
+        <li>whether Auto copy is on</li>
+        <li>whether you have finished the intro</li>
+      </ul>
+      <p>Those settings are not sent to the developer. Uninstall Nook at <code>chrome://extensions</code> to delete them.</p>
+
+      <h2>What is sent, and to whom</h2>
+      <p>The only party Nook causes user data to be shared with is Google, because the sidebar shows your own <a href="https://gemini.google.com/">gemini.google.com</a> page. Nook does not receive a copy.</p>
+      <p>When you press <strong>What’s the answer?</strong>, or the hotkey Alt+Shift+A (Option+Shift+A on Mac), Nook does the rest of that action automatically:</p>
+      <ul>
+        <li>It takes a screenshot of the visible tab.</li>
+        <li>It reads the current page’s title, site name, answer boxes, and on-screen choices, only so it can ask Gemini to format an answer for that page.</li>
+        <li>It places that screenshot and that description into your Gemini chat. Google receives them under your Google account, the same way it would if you attached the screenshot on gemini.google.com yourself.</li>
+      </ul>
+      <p>If Auto fill is on, Nook types the answer into a matching box or choice on that page. It does not click Check, Submit, or any other button. If Auto copy is on, or you press Copy, the answer is copied to your clipboard. Auto copy is off unless you turn it on.</p>
+      <p>Anything you type in the Gemini chat in the sidebar is also sent to Google by Google’s page. Signing in opens Google’s own sign-in page in a tab. Nook does not see or store your Google password.</p>
+      <p>Nook does not keep a list of pages you have visited. It does not log your clicks, scrolling, or keystrokes. It does not collect your name, email address, health information, payment information, or location.</p>
+
+      <h2>How that data is used</h2>
+      <p>The screenshot and page description are used only to answer the page you asked about, and to place that answer when a matching box or choice exists. The developer does not use this data for advertising, and does not use it to judge creditworthiness or for lending.</p>
+      <p>The developer does not sell user data and does not transfer it to any party other than Google, through the Gemini page you are signed into, for this purpose.</p>
+
+      <h2>Permissions</h2>
+      <p>Nook can run on the sites you visit so that the button and the hotkey can screenshot the tab you are looking at, read the question on that page, and type an answer into it. A separate rule lets gemini.google.com load inside the sidebar. That rule does not change other websites.</p>
+
+      <h2>Children</h2>
+      <p>Nook does not ask for a name, email address, or age, and it does not create an account. If a Google account is used, that account is Google’s. Google’s own privacy policy applies to data Gemini receives.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, the “Last updated” date at the top will change. The current version is the page linked from the Chrome Web Store listing.</p>
+
+      <h2>Contact</h2>
+      <p>Privacy questions: <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a></p>
+    </article>
+  </main>
+</body>
+</html>

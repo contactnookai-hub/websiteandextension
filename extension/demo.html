@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo: What's the answer?</title>
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <div class="window">
+        <div class="chrome-bar">
+          <div class="lights"><span></span><span></span><span></span></div>
+          <div class="url">khanacademy.org/math/ap-calculus-ab/chain-rule</div>
+        </div>
+        <div class="content">
+          <div class="page" id="page">
+            <div class="ka-nav">
+              <span class="ka-nav-link">Explore</span>
+              <div class="ka-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z" fill="#14bf96" /><circle cx="12" cy="9.5" r="2.6" fill="#fff" /><path d="M7.5 15.5c2.2 0 4.5-1.4 4.5-3.6 0 2.2 2.3 3.6 4.5 3.6" stroke="#fff" stroke-width="1.6" fill="none" /></svg>
+                Khan Academy
+              </div>
+              <span class="ka-nav-link ka-nav-right">Donate</span>
+            </div>
+
+            <div class="ka-body">
+              <aside class="ka-side">
+                <div class="ka-course">AP Calculus AB</div>
+                <div class="ka-unit">Unit 3 · Composite functions</div>
+                <div class="ka-item"><i class="ka-icon video"></i>Chain rule introduction</div>
+                <div class="ka-item"><i class="ka-icon article"></i>Worked example: sin(x²)</div>
+                <div class="ka-item active"><i class="ka-icon exercise"></i>Chain rule</div>
+                <div class="ka-item"><i class="ka-icon quiz"></i>Quiz 1</div>
+              </aside>
+
+              <main class="ka-main">
+                <div class="ka-task">
+                  <div class="ka-task-title">Chain rule</div>
+                  <div class="ka-task-sub">Get 3 of 4 questions to level up!</div>
+                </div>
+                <div class="ka-question">
+                  <p>Let <span class="math">F(x) = sin(x<sup>4</sup>)</span>.</p>
+                  <p>Find <span class="math">F′(x)</span>.</p>
+                  <div class="ka-answer-row">
+                    <span class="math">F′(x) =</span>
+                    <div class="ka-input" id="answer-input"><span id="typed"></span><span class="caret"></span></div>
+                  </div>
+                </div>
+                <div class="ka-hint">Stuck? <span>Use a hint.</span></div>
+              </main>
+            </div>
+
+            <footer class="ka-footer" id="ka-footer">
+              <div class="ka-progress">
+                <span class="ka-dot done"></span><span class="ka-dot done"></span><span class="ka-dot" id="dot-3"></span><span class="ka-dot"></span>
+                <span class="ka-progress-label">Do 4 problems</span>
+              </div>
+              <div class="ka-footer-right">
+                <span class="ka-feedback" id="feedback">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#00a60e" /><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  Nice work!
+                </span>
+                <span class="ka-check" id="check-btn">Check</span>
+              </div>
+            </footer>
+
+            <div class="flash" id="flash"></div>
+          </div>
+
+          <div class="panel" id="panel">
+            <div class="toolbar">
+              <div class="toolbar-top">
+                <div class="wordmark"><i></i>Gemini</div>
+                <div class="icons"><span></span><span></span><span></span></div>
+              </div>
+              <div class="btn btn-primary" id="answer-btn">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c.7 4.6 3.4 7.3 8 8-4.6.7-7.3 3.4-8 8-.7-4.6-3.4-7.3-8-8 4.6-.7 7.3-3.4 8-8z" /></svg>
+                <span class="spinner"></span>
+                What's the answer?
+              </div>
+              <div class="row row-toggles">
+                <div class="btn">
+                  <svg class="icon muted" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+                  Screenshot
+                </div>
+                <div class="setting">Auto fill <span class="switch on"></span></div>
+                <div class="setting">Auto copy <span class="switch on"></span></div>
+              </div>
+              <div class="status idle" id="status"></div>
+            </div>
+
+            <div class="answer" id="answer">
+              <div class="answer-value">4x^3cos(x^4)</div>
+              <div class="answer-fill" id="answer-fill">Fill</div>
+              <div class="answer-copy" id="answer-copy">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                <span id="copy-label">Copy</span>
+              </div>
+            </div>
+
+            <div class="chat">
+              <div class="bubble user" id="bubble-user">
+                <div class="thumb" id="thumb"></div>
+                <span class="long">What's the answer? Format it for Khan Academy.</span>
+              </div>
+              <div class="bubble model" id="bubble-model">
+                <span class="long">Using the chain rule, F′(x) = cos(x⁴) · 4x³.<br /></span>ANSWER: <b>4x^3cos(x^4)</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shot" id="shot"></div>
+
+      <div class="cursor" id="cursor">
+        <span class="ripple"></span>
+        <svg viewBox="0 0 24 24"><path d="M4 2l15 11-6.5 1.2L16 21l-3 1.4-3.5-6.9L4 20z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round" /></svg>
+      </div>
+
+      <div class="captions">
+        <div class="steps">
+          <div class="step" data-step="1"><b>1</b>Screenshot</div>
+          <div class="step" data-step="2"><b>2</b>Ask Gemini</div>
+          <div class="step" data-step="3"><b>3</b>Format</div>
+          <div class="step" data-step="4"><b>4</b>Copy</div>
+          <div class="step" data-step="5"><b>5</b>Fill</div>
+          <div class="step you" data-step="6"><b>You</b>Check</div>
+        </div>
+        <div class="headline" id="headline"></div>
+      </div>
+    </div>
+
+    <script src="demo.js"></script>
+  </body>
+</html>
