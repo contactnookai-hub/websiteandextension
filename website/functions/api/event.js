@@ -12,9 +12,12 @@ export async function onRequestPost({ request, env }) {
   if (!KINDS.has(kind)) return new Response(null, { status: 400 });
   const now = Date.now();
   const id = clean(url.searchParams.get("id"), 36);
+  const path = clean(url.searchParams.get("path"), 60) || "/";
   const statements = [];
   if (id) {
-    statements.push(env.DB.prepare("INSERT INTO live (id, seen) VALUES (?1, ?2) ON CONFLICT(id) DO UPDATE SET seen = ?2").bind(id, now));
+    statements.push(
+      env.DB.prepare("INSERT INTO live (id, seen, path) VALUES (?1, ?2, ?3) ON CONFLICT(id) DO UPDATE SET seen = ?2, path = ?3").bind(id, now, path)
+    );
   }
   if (kind !== "ping") {
     const day = new Date(now).toISOString().slice(0, 10);

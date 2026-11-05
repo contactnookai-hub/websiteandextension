@@ -77,27 +77,8 @@
     history.replaceState(null, "", id);
   });
 
-  // ——— visit counts (our own Cloudflare function: no cookies, nothing personal) ———
-  // A random id per tab feeds the live "on the site now" count; it lives only in this tab.
-  const tabId = (() => {
-    try {
-      const k = "nookTab";
-      if (!sessionStorage.getItem(k)) sessionStorage.setItem(k, crypto.randomUUID());
-      return sessionStorage.getItem(k);
-    } catch {
-      return crypto.randomUUID();
-    }
-  })();
-  const track = (kind, label = "") => {
-    if (!/^https?:$/.test(location.protocol) || /^(localhost|127\.)/.test(location.hostname)) return;
-    try {
-      navigator.sendBeacon(`/api/event?kind=${kind}&label=${encodeURIComponent(label)}&id=${tabId}`);
-    } catch {
-      /* counting is best-effort */
-    }
-  };
-  track("view", location.pathname);
-  setInterval(() => { if (document.visibilityState === "visible") track("ping"); }, 30000);
+  // Views and the live count come from /assets/track.js (loaded on every page); this page adds clicks.
+  const track = (kind, label) => window.nookTrack?.(kind, label);
 
   // ——— store links: tagged by where they sit (the Web Store's stats show installs by utm_content) and counted ———
   $$("[data-store]").forEach((a) => {

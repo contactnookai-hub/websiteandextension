@@ -9,8 +9,9 @@ export async function onRequestGet({ request, env }) {
   if (!env.STATS_KEY || key !== env.STATS_KEY) return new Response("Not found", { status: 404 });
   const now = Date.now();
   const since = new Date(now - 13 * 86400000).toISOString().slice(0, 10);
-  const [live, totals, daily] = await env.DB.batch([
+  const [live, livePages, totals, daily] = await env.DB.batch([
     env.DB.prepare("SELECT COUNT(*) AS n FROM live WHERE seen > ?1").bind(now - 75000),
+    env.DB.prepare("SELECT COALESCE(path, '/') AS path, COUNT(*) AS n FROM live WHERE seen > ?1 GROUP BY path ORDER BY n DESC").bind(now - 75000),
     env.DB.prepare("SELECT kind, label, SUM(n) AS n FROM counts GROUP BY kind, label ORDER BY kind, n DESC"),
     env.DB.prepare("SELECT day, SUM(CASE WHEN kind='view' THEN n ELSE 0 END) AS views, SUM(CASE WHEN kind='click' THEN n ELSE 0 END) AS clicks FROM counts WHERE day >= ?1 GROUP BY day ORDER BY day DESC").bind(since),
   ]);
@@ -26,6 +27,7 @@ h2{font-size:16px;margin:0}small{color:#5b6475}@media(max-width:520px){.big{grid
 <h1 style="margin:0">Nook website stats</h1><small>Refreshes every 20 seconds. Counts since setup; no cookies, nothing personal.</small>
 <div class="big"><div class="card live"><b>${live.results[0].n}</b><span>on the site now</span></div>
 <div class="card"><b>${sum("view")}</b><span>page views</span></div><div class="card"><b>${sum("click")}</b><span>"Add to Chrome" clicks</span></div></div>
+<h2>On the site now, by page</h2><table><tr><th>Page</th><th>People</th></tr>${livePages.results.map((r) => `<tr><td>${esc(r.path)}</td><td>${r.n}</td></tr>`).join("") || `<tr><td colspan="2">Nobody right now</td></tr>`}</table>
 <h2>Last 14 days</h2><table><tr><th>Day</th><th>Views</th><th>Add to Chrome clicks</th></tr>${daily.results.map((d) => `<tr><td>${d.day}</td><td>${d.views}</td><td>${d.clicks}</td></tr>`).join("") || `<tr><td colspan="3">None yet</td></tr>`}</table>
 <h2>Clicks by button</h2><table><tr><th>Where</th><th>Clicks</th></tr>${rows("click")}</table>
 <h2>Views by page</h2><table><tr><th>Page</th><th>Views</th></tr>${rows("view")}</table>

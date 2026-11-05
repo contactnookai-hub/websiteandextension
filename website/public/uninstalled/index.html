@@ -128,8 +128,6 @@
       const version = new URLSearchParams(location.search).get("v") || "unknown";
       const form = document.getElementById("form"), btn = document.getElementById("submit"), err = document.getElementById("err");
 
-      // Count this page in the site's own stats (no cookies, nothing personal).
-      try { if (/^https:$/.test(location.protocol)) navigator.sendBeacon("/api/event?kind=view&label=/uninstalled/"); } catch {}
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -166,5 +164,6 @@
       });
     })();
   </script>
+  <script src="/assets/track.js"></script>
 </body>
 </html>
