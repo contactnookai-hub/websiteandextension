@@ -4,30 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nook: Free AI Homework Help on Any Page | Chrome Extension</title>
-  <meta name="description" content="Free Chrome extension for homework and practice. Nook reads the question on your screen, asks your own Gemini, and puts the answer in the box. Nook Pro is coming soon at $5/month." />
+  <meta name="description" content="Free Chrome extension for homework and practice. Press ⌥⇧A and Nook reads the question, asks your own Gemini, and puts the answer in the box. Nook Pro is coming soon at $5/month." />
   <link rel="canonical" href="https://trynook.org/" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#f7f7f5" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nook" />
-  <meta property="og:url" content="https://trynook.org/" />
-  <meta property="og:title" content="Nook: one click, the answer's in the box" />
+  <meta property="og:title" content="Nook: one shortcut, the answer's in the box" />
   <meta property="og:description" content="Free Chrome extension. Click once, highlight a question, or answer a whole page with your own Gemini." />
   <meta property="og:image" content="https://trynook.org/assets/og-image-v6.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Nook: one click, and the answer is in the box. Free Chrome extension." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://trynook.org/assets/og-image-v6.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Nook", "alternateName": "Nook | AI Answering Sidebar on Any Page", "description": "Free Chrome extension for homework and practice. Nook reads the question on your screen, asks your own Gemini, and puts the answer where it goes.", "applicationCategory": "EducationalApplication", "applicationSubCategory": "Browser extension", "operatingSystem": "Chrome", "url": "https://trynook.org/", "image": "https://trynook.org/assets/og-image-v6.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=v6-6" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=v10-1" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -39,509 +30,308 @@
         <rect x="11.5" y="10" width="89" height="86" rx="20" fill="#19191c" stroke="#3a3a40" stroke-width="2.4" />
         <path d="M33 32h14l18 26V32h14v42H65L47 48v26H33z" fill="#eef0f6" stroke="#eef0f6" stroke-width="3" stroke-linejoin="round" />
         <path d="M50 58l7 4v10l-7-4z" fill="#5b8def" />
-        <g stroke="#7fb0ff" stroke-width="3.6" stroke-linecap="round">
-          <path d="M86 79v-6" /><path d="M79 85h-6" /><path d="M80.5 79.5l-4-4" /><path d="M91.5 79.5l4-4" />
-        </g>
+        <g stroke="#7fb0ff" stroke-width="3.6" stroke-linecap="round"><path d="M86 79v-6" /><path d="M79 85h-6" /><path d="M80.5 79.5l-4-4" /><path d="M91.5 79.5l4-4" /></g>
         <path d="M87 85l23 9.5-9 3 6.5 7.5-5 4.5-6.5-7.5-4.5 8.5z" fill="#f4f6fb" stroke="#111" stroke-width="2.6" stroke-linejoin="round" />
       </symbol>
-      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.7 4.6 3.4 7.3 8 8-4.6.7-7.3 3.4-8 8-.7-4.6-3.4-7.3-8-8 4.6-.7 7.3-3.4 8-8z" /></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
-      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" /></symbol>
-      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></symbol>
-      <symbol id="i-page" viewBox="0 0 24 24"><path d="M9 6h11" /><path d="M9 12h11" /><path d="M9 18h11" /><path d="M4 5.5l1.2 1.2L7.4 4.5" /><path d="M4 11.5l1.2 1.2 2.2-2.2" /><path d="M4 17.5l1.2 1.2 2.2-2.2" /></symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
-      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M8 16L16 8M9 8h7v7" /></symbol>
-      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /></symbol>
-      <symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2" /><path d="M12 9v11M4 13h16" /><path d="M12 9c-1.5-3.5-5-3.5-5-1.2C7 9 9 9 12 9zM12 9c1.5-3.5 5-3.5 5-1.2C17 9 15 9 12 9z" /></symbol>
-      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" /><path d="M11 12l8-8M16 7l2 2M14 9l2 2" /></symbol>
-      <symbol id="i-hand" viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11" /><path d="M12 10V4.5a1.5 1.5 0 0 1 3 0V11" /><path d="M15 10.5V6.5a1.5 1.5 0 0 1 3 0v7.5a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 14.2a1.6 1.6 0 0 1 2.6-1.8L9 15V8.5a1.5 1.5 0 0 1 3 0" /></symbol>
-      <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></symbol>
-      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></symbol>
-      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" /><path d="M10 20.5a2.2 2.2 0 0 0 4 0" /></symbol>
-      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z" /></symbol>
-      <symbol id="i-bubble" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.2" /></symbol>
-      <symbol id="i-cmd" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5" /><path d="M7 10h.01M11 10h.01M15 10h.01M7 14h10" /></symbol>
-      <symbol id="i-hl" viewBox="0 0 24 24"><path d="M4 20h16" /><path d="M14.5 4.5l5 5L10 19H5v-5z" /></symbol>
-      <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0" /><path d="M12 18l4-6" /><path d="M8 18h8" /></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor" stroke="none" /></symbol>
-      <symbol id="i-sidebar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5" /><path d="M14.5 4.5v15" /></symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5" /><path d="M4 7l8 6 8-6" /></symbol>
-      <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8.2-6.3 1.4L9.6 19z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round" /></symbol>
-      <!-- page types (the "works with" wall) -->
-      <symbol id="t-radio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3.2" fill="currentColor" stroke="none" /></symbol>
-      <symbol id="t-box" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" /><path d="M7 10v4" /></symbol>
-      <symbol id="t-math" viewBox="0 0 24 24"><path d="M4 12h3l3 7 4-14h6" /></symbol>
-      <symbol id="t-select" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" /><path d="M14 11l2 2 2-2" /></symbol>
-      <symbol id="t-checks" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><path d="M5.8 7.6l1.3 1.3L9.5 6.4M14 7.5h6M14 16.5h6" /></symbol>
-      <symbol id="t-blank" viewBox="0 0 24 24"><path d="M3 12h4M17 12h4" /><path d="M9 15h6" /></symbol>
-      <symbol id="t-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" /></symbol>
-      <symbol id="t-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 16l5-5 4 4 3-3 6 6" /><circle cx="15.5" cy="9" r="1.5" /></symbol>
-      <symbol id="t-frac" viewBox="0 0 24 24"><path d="M12 4v5M9.5 6.5h5M5 12h14M9.5 17.5h5" /></symbol>
-      <symbol id="t-text" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9h10M7 13h10M7 17h6" /></symbol>
-      <symbol id="t-num" viewBox="0 0 24 24"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16" /></symbol>
-      <symbol id="t-form" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 8h6M9 12h6M9 16h3" /></symbol>
+      <symbol id="i-chrome" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.8" /><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M12 8.4h8.4M8.9 13.8 4.7 6.5M15.1 13.8l-4.2 7.3" fill="none" stroke="currentColor" stroke-width="1.8" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7" /><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="1.7" /></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1V4a1.5 1.5 0 0 1 3 0v7m0-1a1.5 1.5 0 0 1 3 0v5.5a6.5 6.5 0 0 1-6.5 6.5h-1a6 6 0 0 1-4.7-2.3L4.6 16a1.6 1.6 0 0 1 2.4-2L9 15.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" /></symbol>
+      <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M17 5H7l6 7-6 7h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="4.5" cy="6" r="1.4" fill="currentColor" /><circle cx="4.5" cy="12" r="1.4" fill="currentColor" /><circle cx="4.5" cy="18" r="1.4" fill="currentColor" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7" /><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="1.7" /></symbol>
     </defs>
   </svg>
 
-  <a class="skip" href="#main">Skip to content</a>
-
-  <!-- ——— Header ——— -->
   <header class="nav" id="nav">
-    <a class="brand" href="#top" aria-label="Nook home"><svg class="brand-mark" aria-hidden="true"><use href="#logo" /></svg><span>Nook</span></a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#pro">Nook Pro</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div class="nav-cta">
-      <a class="btn btn-accent" href="#" data-store>Add to Chrome</a>
-      <a class="btn btn-pro" href="#pro"><svg class="ic"><use href="#i-bolt" /></svg>Get Pro</a>
+    <div class="wrap nav-in">
+      <a class="brand" href="#top" aria-label="Nook home"><svg><use href="#logo" /></svg>Nook</a>
+      <nav class="links" aria-label="Main">
+        <a href="#how">How it works</a><a href="#features">Features</a><a href="#pro">Pro</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-dark btn-sm" href="#" data-store>Add to Chrome <span class="tag">Free</span></a>
     </div>
-    <button class="nav-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
   </header>
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
-    <a href="#pro">Nook Pro</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a class="btn btn-accent btn-lg" href="#" data-store>Add to Chrome, it's free</a>
-  </div>
 
-  <main id="main">
+  <main id="top">
     <!-- ——— Hero ——— -->
-    <section class="hero" id="top">
-      <div class="specks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <h1 class="display" data-reveal>One click, and the<br class="br-wide" /> answer's in the box</h1>
-      <p class="lede" data-reveal style="--d:80ms">The free Chrome extension that reads the question on your screen, asks your own Gemini, and puts the answer right where it goes.</p>
-      <div class="hero-cta" data-reveal style="--d:140ms">
-        <a class="btn btn-accent btn-lg" href="#" data-store>Add to Chrome, it's free</a>
-        <a class="btn btn-soft btn-lg" href="#pro">See Nook Pro</a>
+    <section class="hero">
+      <div class="wrap hero-in">
+        <a class="badge" href="#pro"><span class="badge-new">New</span>Nook Pro is coming soon <span aria-hidden="true">→</span></a>
+        <h1>One shortcut.<br />The answer's in the box.</h1>
+        <p class="sub">Nook is a free Chrome extension that reads the question on your screen, asks the Gemini you already have, and types the answer right where it goes. You check it and move on.</p>
+        <div class="cta-row">
+          <a class="btn btn-dark btn-lg" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">Free</span></a>
+          <a class="btn btn-light btn-lg" href="#pricing">Nook Pro <span class="tag tag-soft">$5/mo</span></a>
+        </div>
+        <ul class="assure">
+          <li><svg><use href="#i-check" /></svg>No account</li>
+          <li><svg><use href="#i-check" /></svg>No API key</li>
+          <li><svg><use href="#i-check" /></svg>Collects no data</li>
+          <li><svg><use href="#i-check" /></svg>Mac and Windows</li>
+        </ul>
       </div>
 
-      <!-- Live replica: a desk with Chrome, the Nook sidebar, a bubble and a run log. -->
-      <div class="stage" id="stage" data-reveal style="--d:200ms" aria-label="Nook filling in an answer on a worksheet">
-        <div class="stage-bar"><span class="sb-l"><svg class="sb-mark" aria-hidden="true"><use href="#logo" /></svg>Nook</span><span class="sb-r" data-clock>Sun 15 Nov 4:52 PM</span></div>
-        <div class="island" aria-hidden="true"><span class="kc">⌥</span><span class="kc">⇧</span><span class="kc">A</span><span class="island-s" data-h="island">Ready</span></div>
-
-        <div class="win">
-          <div class="win-top"><span class="dots"><i></i><i></i><i></i></span><span class="omni">practice.example/unit-5/linear-equations</span></div>
-          <div class="win-body">
-            <div class="sheet">
-              <p class="sheet-k">Unit 5 · Practice</p>
-              <p class="sheet-q">Solve for <i>x</i>.</p>
-              <p class="sheet-m">3(<i>x</i> − 4) = 2<i>x</i> + 5</p>
-              <div class="sheet-a"><span class="sheet-l"><i>x</i> =</span><span class="field" data-h="field"><span class="field-v" data-h="fieldv"></span><span class="caret"></span></span></div>
-              <div class="sheet-row"><span class="fake-btn">Check</span><span class="sheet-n">You press Check. Nook never does.</span></div>
+      <div class="wrap shot-wrap">
+        <div class="modes" role="tablist" aria-label="Ways to use Nook">
+          <button role="tab" class="on" data-mode="click"><kbd data-mac="⌥⇧A" data-pc="Alt+Shift+A">⌥⇧A</kbd>One click</button>
+          <button role="tab" data-mode="highlight">Highlight</button>
+          <button role="tab" data-mode="page">Whole page</button>
+          <button role="tab" data-mode="hidden">Hidden <span class="pro">Pro</span></button>
+        </div>
+        <div class="shot" id="shot">
+          <div class="browser" id="mac" aria-hidden="true">
+            <div class="b-bar">
+              <span class="b-dots"><i></i><i></i><i></i></span>
+              <span class="b-url"><svg><use href="#i-lock" /></svg>practice.school/algebra/unit-5</span>
+              <span class="b-ext"><svg><use href="#logo" /></svg></span>
             </div>
-            <aside class="side">
-              <div class="side-h"><svg class="side-mark" aria-hidden="true"><use href="#logo" /></svg><b>Nook</b><span class="side-i"></span><span class="side-i"></span></div>
-              <div class="side-btn" data-h="btn"><svg class="ic"><use href="#i-spark" /></svg>What's the answer?</div>
-              <div class="side-row"><span class="side-sm"><svg class="ic"><use href="#i-camera" /></svg>Screenshot</span><span class="side-sm on"><i class="tog"></i>Auto fill</span></div>
-              <p class="side-status" data-h="status">Ready when you are</p>
-              <div class="side-card" data-h="card">
-                <p class="sc-k">Answer</p>
-                <p class="sc-v">x = 17</p>
-                <p class="sc-w">Distribute: 3x − 12 = 2x + 5, so x = 17.</p>
+            <div class="b-body">
+              <div class="page">
+                <p class="pg-k">Unit 5 · Review</p>
+                <p class="pg-t">Practice set</p>
+                <div class="qq" data-q="1"><i class="dot"></i><p>1. Solve for <i>x</i>: &nbsp;3(<i>x</i> − 4) = 2<i>x</i> + 5</p><span class="box"><span class="ans">17</span></span></div>
+                <div class="qq" data-q="2"><i class="dot"></i><p><mark>2. Which gas do plants take in for photosynthesis?</mark></p>
+                  <div class="chs"><span>Oxygen</span><span class="right">Carbon dioxide</span><span>Nitrogen</span></div>
+                  <div class="ctx"><span>Copy</span><span class="ask"><svg><use href="#logo" /></svg>Ask Nook</span><span>Search Google</span></div>
+                  <div class="bub"><b>Carbon dioxide</b><span>Plants take in CO₂ and give off O₂.</span></div></div>
+                <div class="qq" data-q="3"><i class="dot"></i><p>3. Simplify 6/8 to lowest terms.</p><span class="box"><span class="ans">3/4</span></span></div>
+                <div class="qq" data-q="4"><i class="dot"></i><p>4. ¿Cómo se dice “library” en español?</p><span class="box wide"><span class="ans">la biblioteca</span></span></div>
+                <span class="cursor"><svg viewBox="0 0 24 24"><path d="M4 2l15 8.5-6.5 1.6L9.5 19z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" /></svg><i class="ld"></i></span>
               </div>
-              <div class="side-gem"><span class="g-dot"></span><span class="g-line"></span><span class="g-line short"></span></div>
-            </aside>
+              <aside class="side">
+                <div class="side-h"><svg><use href="#logo" /></svg><b>Nook</b></div>
+                <span class="side-btn">What's the answer?<kbd data-mac="⌥⇧A" data-pc="Alt+Shift+A">⌥⇧A</kbd></span>
+                <span class="side-btn ghost">Answer whole page</span>
+                <p class="side-s"><span class="st st1">Reading the page…</span><span class="st st2">Asking Gemini…</span><span class="st st3">Filled in · 5.2s</span></p>
+                <div class="side-card"><span class="k">ANSWER</span><b>x = 17</b><span class="e">3x − 12 = 2x + 5, so x = 17.</span></div>
+                <div class="side-gem"><i></i><i></i><i></i></div>
+              </aside>
+              <div class="pill-page"><span>4 of 4 ready</span><b>Fill all</b></div>
+            </div>
           </div>
         </div>
-
-        <div class="float float-l" aria-hidden="true">
-          <p class="fl-k">Ask Nook</p>
-          <p class="fl-q">“Which gas do plants take in for photosynthesis?”</p>
-          <p class="fl-a" data-h="bubble">Carbon dioxide</p>
-        </div>
-        <div class="float float-r" aria-hidden="true">
-          <div class="fr-top"><span class="dots dark"><i></i><i></i><i></i></span><span>Answer whole page</span></div>
-          <ol class="fr-log" data-h="log">
-            <li>Q1 <b>x = 17</b></li>
-            <li>Q2 <b>Carbon dioxide</b></li>
-            <li>Q3 <b>3/4</b></li>
-            <li>Q4 <b>Mitochondria</b></li>
-            <li>Q5 <b>China</b></li>
-          </ol>
-        </div>
+        <p class="shot-cap" id="shot-cap"><b>One click.</b> Press ⌥⇧A. Nook reads the question, asks Gemini and types the answer in the box.</p>
       </div>
     </section>
 
-    <!-- ——— What it answers (logo-wall style) ——— -->
-    <section class="wall wrap" aria-label="What Nook can answer">
-      <p class="wall-k" data-reveal>Works with the answer boxes on the pages you already use</p>
-      <ul class="wall-grid" data-reveal style="--d:60ms">
-        <li><svg><use href="#t-radio" /></svg>Multiple choice</li>
-        <li><svg><use href="#t-checks" /></svg>Select all</li>
-        <li><svg><use href="#t-box" /></svg>Answer boxes</li>
-        <li><svg><use href="#t-num" /></svg>Number boxes</li>
-        <li><svg><use href="#t-math" /></svg>Math boxes</li>
-        <li><svg><use href="#t-frac" /></svg>Fractions</li>
-        <li><svg><use href="#t-select" /></svg>Dropdowns</li>
-        <li><svg><use href="#t-blank" /></svg>Fill in the blank</li>
-        <li><svg><use href="#t-text" /></svg>Written answers</li>
-        <li><svg><use href="#t-code" /></svg>Code editors</li>
-        <li><svg><use href="#t-image" /></svg>Graphs</li>
-        <li><svg><use href="#t-form" /></svg>Worksheets</li>
-      </ul>
-    </section>
-
-    <!-- ——— Tour (featured story layout) ——— -->
-    <section class="story wrap" aria-label="Watch the tour">
-      <div class="story-copy">
-        <p class="lockup" data-reveal><svg class="lk-mark" aria-hidden="true"><use href="#logo" /></svg><b>Nook</b><span class="lk-x">×</span><span>your homework</span></p>
-        <h2 class="h2" data-reveal style="--d:60ms">From stuck to checked in about five seconds</h2>
-        <p class="body" data-reveal style="--d:100ms">Press one button and Nook takes a screenshot, reads the question and the answer box, asks Gemini, and writes the answer the way that page expects it.</p>
-        <dl class="stats" data-reveal style="--d:140ms" title="In our tests; times vary by page and connection">
-          <div><dt>~5s</dt><dd>per answer in our tests</dd></div>
-          <div><dt>$0</dt><dd>free, with no trial</dd></div>
-          <div><dt>0</dt><dd>accounts or keys to set up</dd></div>
-        </dl>
-        <a class="link" href="#" data-store data-reveal style="--d:180ms">Add it to Chrome <svg class="ic"><use href="#i-arrow" /></svg></a>
-      </div>
-      <figure class="story-media" data-reveal style="--d:120ms">
-        <video data-video src="assets/nook-free.mp4" poster="assets/nook-free-poster.jpg" preload="none" playsinline></video>
-        <button class="play" type="button" data-play="tour"><svg class="ic" aria-hidden="true"><use href="#i-play" /></svg>Watch the tour <span>0:46</span></button>
-      </figure>
-    </section>
-
-    <!-- ——— Problem / Solution ——— -->
-    <section class="ps" id="how" aria-label="How it works">
-      <div class="wrap ps-in">
-        <div class="seg" role="tablist" aria-label="Problem or solution" data-reveal>
-          <button role="tab" type="button" aria-selected="true" data-ps="problem">Problem</button>
-          <button role="tab" type="button" aria-selected="false" data-ps="solution">Solution</button>
-        </div>
-        <div class="ps-copy" data-reveal style="--d:60ms">
-          <div class="ps-text" data-show="problem">
-            <h2 class="h2 center">Homework help shouldn't take five tabs</h2>
-            <p class="body center">Copy the question, open a chatbot, paste it, fix the math it mangled, copy the answer back, then work out what format the box wants. Every question, every night.</p>
-          </div>
-          <div class="ps-text" data-show="solution" hidden>
-            <h2 class="h2 center">One click does all of it</h2>
-            <p class="body center">Nook reads the question right off the page, math included, asks the Gemini in your own Google account, and puts the answer in the box in the format that box expects.</p>
-          </div>
-        </div>
-        <div class="flow" data-mode="problem" id="flow" aria-hidden="true">
-          <svg class="flow-lines" viewBox="0 0 1100 300" preserveAspectRatio="none"><path d="M60 300V120q0-24 24-24h220q24 0 24 24v60q0 24 24 24h200" /><path d="M1040 300V140q0-24-24-24H800q-24 0-24 24v40q0 24-24 24H552" /><path d="M550 300V210" /><path d="M200 300v-60q0-20 20-20h90" /><path d="M900 300v-50q0-20-20-20h-90" /></svg>
-          <div class="fc fc-1"><span class="fc-i"><svg class="ic"><use href="#i-copy" /></svg></span><span><small data-p="Step 1" data-s="Step 1">Step 1</small><b data-p="Copy the question" data-s="Press ⌥⇧A">Copy the question</b></span></div>
-          <div class="fc fc-2"><span class="fc-i"><svg class="ic"><use href="#i-sidebar" /></svg></span><span><small data-p="Step 2" data-s="Step 2">Step 2</small><b data-p="New tab, paste, fix the symbols" data-s="Nook reads it, math and all">New tab, paste, fix the symbols</b></span></div>
-          <div class="fc fc-3"><span class="fc-i"><svg class="ic"><use href="#i-hand" /></svg></span><span><small data-p="Step 3" data-s="Step 3">Step 3</small><b data-p="Copy it back, guess the format" data-s="Answer goes in the box">Copy it back, guess the format</b></span></div>
-          <span class="flow-pill" data-p="10 minutes later" data-s="Done in about 5 seconds">10 minutes later</span>
-          <span class="tag tag-1">Nook</span><span class="tag tag-2">Nook</span>
-        </div>
+    <!-- ——— Works on ——— -->
+    <section class="works">
+      <div class="wrap">
+        <p class="works-h">Works on the kinds of pages you already use</p>
+        <ul class="types">
+          <li>Multiple choice</li><li>Answer boxes</li><li>Math fields</li><li>Dropdowns</li><li>Select all</li><li>Forms</li><li>LMS quizzes</li><li>Worksheets</li><li>Code editors</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ——— Big statement ——— -->
-    <section class="statement wrap">
-      <p class="display" data-reveal>Meet the sidebar that knows what the answer box wants</p>
-    </section>
-
-    <!-- ——— Built on your Gemini ——— -->
-    <section class="core" aria-label="Built on the Gemini you already have">
-      <div class="arch" aria-hidden="true">
-        <div class="arch-ring r1"></div><div class="arch-ring r2"></div>
-        <div class="arch-in">
-          <div class="chips c1"><span>Your Gemini</span><span>Your account</span><span>Your page</span><span>Math</span><span>Choices</span><span>Your Gemini</span><span>Your account</span><span>Your page</span><span>Math</span><span>Choices</span></div>
-          <div class="chips c2"><span>Answer boxes</span><span>Dropdowns</span><span>Code</span><span>Pictures</span><span>Answer boxes</span><span>Dropdowns</span><span>Code</span><span>Pictures</span></div>
-        </div>
-        <span class="arch-node n1"><svg class="ic"><use href="#i-lock" /></svg></span>
-        <span class="arch-node n2"><svg class="ic"><use href="#i-spark" /></svg></span>
-      </div>
-      <div class="core-band">
-        <div class="wrap core-in">
-          <svg class="core-mark" aria-hidden="true"><use href="#logo" /></svg>
-          <h2 class="h2 center light" data-reveal>Built on the Gemini you already have</h2>
-          <p class="body center light" data-reveal style="--d:60ms">Nook runs the real Gemini in Chrome's sidebar, signed in to your own Google account. There's no API key, no Nook account and nothing in between.</p>
-          <a class="btn btn-ghost-light" href="privacy/" data-reveal style="--d:100ms">How your data stays yours</a>
-          <div class="core-cards">
-            <article class="cc" data-reveal><span class="cc-i"><svg class="ic"><use href="#i-gift" /></svg></span><h3>Free forever</h3><p>No subscription, no trial and no card. The free plan isn't going anywhere.</p></article>
-            <article class="cc" data-reveal style="--d:60ms"><span class="cc-i"><svg class="ic"><use href="#i-key" /></svg></span><h3>No API key</h3><p>Sign in to Gemini once in the sidebar with your Google account. That's the setup.</p></article>
-            <article class="cc" data-reveal style="--d:120ms"><span class="cc-i"><svg class="ic"><use href="#i-lock" /></svg></span><h3>No data collected</h3><p>The free extension collects no data. Questions go from your browser to Gemini, and Nook has no server reading your pages.</p></article>
-            <article class="cc" data-reveal style="--d:180ms"><span class="cc-i"><svg class="ic"><use href="#i-hand" /></svg></span><h3>You press Submit</h3><p>Nook fills the box and stops. It never presses Check, Submit or Next.</p></article>
-          </div>
+    <!-- ——— How it works ——— -->
+    <section class="sec" id="how">
+      <div class="wrap">
+        <p class="kicker">How it works</p>
+        <h2>From question to answer in about five seconds.</h2>
+        <div class="steps">
+          <article class="step">
+            <span class="step-n">1</span>
+            <h3>Open your question</h3>
+            <p>Any page in Chrome: a worksheet, a quiz, a form, a code exercise. Nothing to set up.</p>
+            <div class="step-viz v1"><span class="l w1"></span><span class="l w2"></span><span class="field"></span></div>
+          </article>
+          <article class="step">
+            <span class="step-n">2</span>
+            <h3>Press ⌥⇧A</h3>
+            <p>Nook reads the question, math and pictures included, and asks Gemini in your own Google account.</p>
+            <div class="step-viz v2"><kbd>⌥</kbd><kbd>⇧</kbd><kbd>A</kbd></div>
+          </article>
+          <article class="step">
+            <span class="step-n">3</span>
+            <h3>Check the answer</h3>
+            <p>It's typed into the box, formatted for that site. Read it, fix it if you want, and submit it yourself.</p>
+            <div class="step-viz v3"><span class="field done">x = 17</span><span class="ok"><svg><use href="#i-check" /></svg>Filled</span></div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- ——— Features ——— -->
-    <section class="features" id="features">
+    <section class="sec sec-alt" id="features">
       <div class="wrap">
-        <h2 class="display sm center" data-reveal>Fast at every kind of question</h2>
-        <p class="lede center" data-reveal style="--d:60ms">One button, a right-click, a whole page at once, or plain Gemini when you want to talk it through.</p>
-      </div>
-
-      <nav class="ftabs" id="ftabs" aria-label="Features">
-        <a href="#f-answer" data-ft="f-answer"><svg class="ic"><use href="#i-spark" /></svg>What's the answer?</a>
-        <a href="#f-highlight" data-ft="f-highlight"><svg class="ic"><use href="#i-hl" /></svg>Highlight</a>
-        <a href="#f-page" data-ft="f-page"><svg class="ic"><use href="#i-page" /></svg>Whole page</a>
-        <a href="#f-gemini" data-ft="f-gemini"><svg class="ic"><use href="#i-camera" /></svg>Screenshot</a>
-        <i class="ftabs-bar" id="ftabs-bar"></i>
-      </nav>
-
-      <div class="wrap fcards">
-        <!-- 1 -->
-        <article class="fcard" id="f-answer">
-          <div class="fc-copy">
-            <h3 class="h3" data-reveal>One click, and the answer's in the box</h3>
-            <p class="body" data-reveal style="--d:60ms">Press <kbd>⌥⇧A</kbd> or the big button. Nook screenshots the page, reads the question and the box after it, and writes the answer exactly how that box wants it: a number, a fraction, the exact wording of a choice.</p>
-            <a class="link" href="#" data-store data-reveal style="--d:100ms">Add to Chrome <svg class="ic"><use href="#i-arrow" /></svg></a>
-            <div class="tip" data-reveal style="--d:140ms"><p class="tip-k"><svg class="ic"><use href="#i-cmd" /></svg>Tip</p><p>The shortcut works from any page. If the sidebar is closed, Nook opens it for you. On Windows it's Alt+Shift+A.</p></div>
-          </div>
-          <div class="fc-vis">
-            <div class="mock" data-mock="answer" data-step="0">
-              <div class="m-sheet">
-                <p class="m-k" data-v="k">Multiple choice</p>
-                <p class="m-q" data-v="q">Which expression is equivalent to (x + 3)²?</p>
-                <div class="m-ans" data-v="a"></div>
-              </div>
-              <div class="m-side"><div class="ms-btn"><svg class="ic"><use href="#i-spark" /></svg>What's the answer?</div><p class="ms-k">Answer</p><p class="ms-v" data-v="v">x² + 6x + 9</p></div>
-            </div>
-            <div class="subtabs" role="tablist">
-              <button type="button" class="on" data-sub="0"><svg class="ic"><use href="#t-radio" /></svg>Choices</button>
-              <button type="button" data-sub="1"><svg class="ic"><use href="#t-math" /></svg>Math</button>
-              <button type="button" data-sub="2"><svg class="ic"><use href="#t-select" /></svg>Dropdowns</button>
-              <button type="button" data-sub="3"><svg class="ic"><use href="#t-code" /></svg>Code</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 2 -->
-        <article class="fcard" id="f-highlight">
-          <div class="fc-copy">
-            <h3 class="h3" data-reveal>Highlight a question, get the answer next to it</h3>
-            <p class="body" data-reveal style="--d:60ms">Select any question, right-click and choose Ask Nook. The answer pops up in a small bubble just above it, so the box underneath stays in view, and Nook fills that box, not the first one on the page.</p>
-            <a class="link" href="#" data-store data-reveal style="--d:100ms">Try it on your next worksheet <svg class="ic"><use href="#i-arrow" /></svg></a>
-            <div class="tip" data-reveal style="--d:140ms"><p class="tip-k"><svg class="ic"><use href="#i-hl" /></svg>Tip</p><p>Highlighted math comes through as real math, not garbled symbols, so Gemini sees exactly what you see.</p></div>
-          </div>
-          <div class="fc-vis">
-            <div class="mock hl" data-mock="hl" data-step="0">
-              <div class="m-sheet">
-                <p class="m-k">Biology · Cells</p>
-                <p class="m-q"><mark>Which organelle makes most of the cell's energy?</mark></p>
-                <div class="m-choices"><span>Nucleus</span><span class="pick">Mitochondria</span><span>Ribosome</span><span>Cell wall</span></div>
-              </div>
-              <div class="ctx"><span>Copy</span><span>Search Google for “Which organelle…”</span><span class="ctx-nook"><svg class="ic"><use href="#logo" /></svg>Ask Nook</span><span>Inspect</span></div>
-              <div class="bub"><p class="bub-k"><svg class="ic"><use href="#logo" /></svg>Nook</p><p class="bub-v">Mitochondria</p><p class="bub-w">They turn sugar into the cell's usable energy.</p></div>
-            </div>
-            <div class="subtabs" role="tablist">
-              <button type="button" class="on" data-sub="0"><svg class="ic"><use href="#i-hl" /></svg>Highlight</button>
-              <button type="button" data-sub="1"><svg class="ic"><use href="#i-cursor" /></svg>Right-click</button>
-              <button type="button" data-sub="2"><svg class="ic"><use href="#i-bubble" /></svg>Bubble</button>
-              <button type="button" data-sub="3"><svg class="ic"><use href="#i-check" /></svg>Filled</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3 -->
-        <article class="fcard" id="f-page">
-          <div class="fc-copy">
-            <p class="new">New</p>
-            <h3 class="h3" data-reveal>Every question on the page, in one ask</h3>
-            <p class="body" data-reveal style="--d:60ms">Answer whole page reads every question at once and asks Gemini about all of them together. A dot by each question turns blue when its answer is ready. Double-click a question to fill it, or press Fill all.</p>
-            <a class="link" href="#" data-store data-reveal style="--d:100ms">Add to Chrome <svg class="ic"><use href="#i-arrow" /></svg></a>
-            <div class="tip" data-reveal style="--d:140ms"><p class="tip-k"><svg class="ic"><use href="#i-page" /></svg>Tip</p><p>A red dot means Nook couldn't place that answer. Click the dot to copy it and paste it yourself.</p></div>
-          </div>
-          <div class="fc-vis">
-            <div class="mock pg" data-mock="page" data-step="0">
-              <div class="m-sheet">
-                <p class="m-k">Practice set · 5 questions</p>
-                <div class="pg-q"><i class="d"></i><span>1. Solve 3(x − 4) = 2x + 5</span><b class="pg-a">17</b></div>
-                <div class="pg-q"><i class="d"></i><span>2. What is 15% of 80?</span><b class="pg-a">12</b></div>
-                <div class="pg-q"><i class="d"></i><span>3. Capital of Australia</span><b class="pg-a">Canberra</b></div>
-                <div class="pg-q"><i class="d"></i><span>4. Simplify 6/8</span><b class="pg-a">3/4</b></div>
-                <div class="pg-q"><i class="d"></i><span>5. H₂O is made of…</span><b class="pg-a">Hydrogen and oxygen</b></div>
-              </div>
-              <div class="pg-pill"><span data-v="pill">Reading 5 questions…</span><b>Fill all</b></div>
-            </div>
-            <div class="subtabs" role="tablist">
-              <button type="button" class="on" data-sub="0"><svg class="ic"><use href="#i-page" /></svg>Scan</button>
-              <button type="button" data-sub="1"><svg class="ic"><use href="#i-spark" /></svg>Ready</button>
-              <button type="button" data-sub="2"><svg class="ic"><use href="#i-cursor" /></svg>Double-click</button>
-              <button type="button" data-sub="3"><svg class="ic"><use href="#i-check" /></svg>Fill all</button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4 -->
-        <article class="fcard" id="f-gemini">
-          <div class="fc-copy">
-            <h3 class="h3" data-reveal>Ask it your way, the normal Gemini is right there</h3>
-            <p class="body" data-reveal style="--d:60ms">Screenshot sends what's on your screen with your own question. Ask for the steps, a simpler explanation or a practice problem like it. It's the full Gemini, in the same sidebar.</p>
-            <a class="link" href="#faq" data-reveal style="--d:100ms">Read the FAQ <svg class="ic"><use href="#i-arrow" /></svg></a>
-            <div class="tip" data-reveal style="--d:140ms"><p class="tip-k"><svg class="ic"><use href="#i-spark" /></svg>Tip</p><p>Got an answer and want to actually learn it? Type “explain step by step” and Gemini walks you through it.</p></div>
-          </div>
-          <div class="fc-vis">
-            <div class="mock gm" data-mock="gemini" data-step="0">
-              <div class="gm-panel">
-                <div class="gm-h"><svg class="ic"><use href="#logo" /></svg><b>Nook</b></div>
-                <div class="gm-shot"><span></span><span></span><span class="s"></span></div>
-                <p class="gm-me">Explain how to solve this step by step</p>
-                <div class="gm-ai"><p><b>1.</b> Distribute the 3: 3x − 12 = 2x + 5</p><p><b>2.</b> Subtract 2x from both sides: x − 12 = 5</p><p><b>3.</b> Add 12: <b>x = 17</b></p></div>
-              </div>
-            </div>
-            <div class="subtabs" role="tablist">
-              <button type="button" class="on" data-sub="0"><svg class="ic"><use href="#i-camera" /></svg>Screenshot</button>
-              <button type="button" data-sub="1"><svg class="ic"><use href="#i-spark" /></svg>Ask</button>
-              <button type="button" data-sub="2"><svg class="ic"><use href="#i-page" /></svg>Explain</button>
-              <button type="button" data-sub="3"><svg class="ic"><use href="#i-copy" /></svg>Copy</button>
-            </div>
-          </div>
-        </article>
+        <p class="kicker">Features</p>
+        <h2>Everything you'd do by hand, done for you.</h2>
+        <div class="grid">
+          <article class="feat"><svg><use href="#i-sigma" /></svg><h3>Reads real math</h3><p>Fractions, exponents, roots and matrices come through as math, not garbled text, so the answer matches the question.</p></article>
+          <article class="feat"><svg><use href="#i-list" /></svg><h3>Fills every kind of box</h3><p>Picks the choice, types the blank, opens the dropdown, ticks every box in a select-all.</p></article>
+          <article class="feat"><svg><use href="#i-cursor" /></svg><h3>Highlight to ask</h3><p>Select one question, right-click, Ask Nook. The answer pops up right above it.</p></article>
+          <article class="feat"><svg><use href="#i-copy" /></svg><h3>A whole page at once</h3><p>One ask answers every question. Double-click a question to fill it, or Fill all.</p></article>
+          <article class="feat"><svg><use href="#i-code" /></svg><h3>Code editors</h3><p>Reads the starter code and writes the full solution into the editor, formatting intact.</p></article>
+          <article class="feat"><svg><use href="#i-chat" /></svg><h3>Gemini, right there</h3><p>The full Gemini chat lives in the sidebar. Ask it to explain the steps whenever you want to learn it.</p></article>
+        </div>
+        <div class="trust">
+          <div><svg><use href="#i-hand" /></svg><p><b>Never presses Submit.</b> Nook fills the answer and stops. Turning it in is always your call.</p></div>
+          <div><svg><use href="#i-lock" /></svg><p><b>Nothing goes through us.</b> Your question goes from your browser to Gemini in your Google account. No Nook server, no account.</p></div>
+        </div>
       </div>
     </section>
 
-    <!-- ——— Nook Pro ——— -->
-    <section class="pro wrap" id="pro">
-      <div class="pro-copy">
-        <p class="badge" data-reveal><svg class="ic"><use href="#i-bell" /></svg>Coming soon <span class="badge-sep"></span> planned at $5/month</p>
-        <h2 class="h2" data-reveal style="--d:60ms">Nook Pro: faster, and invisible when you want it</h2>
-        <p class="body" data-reveal style="--d:100ms">A paid plan we're building. Pro swaps the sidebar for a small bubble, and <b class="hl-word">Hidden mode</b> makes Nook invisible on the page: no bubble, not even the dots, just a tiny loader by your cursor that disappears once the answers are in. It also runs on a better AI model, 99% right in our tests, with answers in about one to two seconds. The free plan stays free.</p>
-        <ul class="pro-grid" data-reveal style="--d:140ms">
-          <li class="on hidden-tile"><b>Hidden</b><span>and invisible: not even the dots, just a tiny loader that disappears</span></li>
-          <li><b>Better AI</b><span>99% right in our tests, across 20 subjects</span></li>
-          <li><b>~2s</b><span>a whole page, vs 5–6s in the sidebar</span></li>
-          <li><b>Highlight</b><span>select a question, answer it in the bubble</span></li>
-          <li><b>250</b><span>answers a day, planned</span></li>
-          <li><b>$5</b><span>a month, cancel any time</span></li>
-        </ul>
-      </div>
-      <div class="pro-vis" data-reveal style="--d:120ms">
-        <div class="stack s3"></div><div class="stack s2"></div>
-        <div class="pro-card">
-          <div class="pc-page">
-            <div class="pc-row"><i class="d ok"></i><span class="pc-l w1"></span></div>
-            <div class="pc-row"><i class="d ok"></i><span class="pc-l w2"></span></div>
-            <div class="pc-row"><i class="d"></i><span class="pc-l w3"></span></div>
-            <div class="pc-menu">
-              <div class="pm-h"><svg class="ic"><use href="#logo" /></svg><b>Nook</b><span class="pm-tag">Pro</span></div>
-              <div class="pm-i"><svg class="ic"><use href="#i-page" /></svg>Answer whole page<kbd>⌘⌃X</kbd></div>
-                            <div class="pm-i"><svg class="ic"><use href="#i-hl" /></svg>Answer highlight<kbd>⌥⇧A</kbd></div>
-              <div class="pm-i"><svg class="ic"><use href="#i-check" /></svg>Fill all<kbd>⌘⌃Z</kbd></div>
-              <div class="pm-seg"><span>Normal</span><span>Dots</span><span class="on">Hidden</span></div>
-              <p class="pm-desc"><b>Hidden</b> · invisible on the page, no dots, just a tiny loader</p>
-            </div>
-            <span class="pc-bubble"><svg class="ic"><use href="#logo" /></svg></span>
-            <span class="pc-cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-cursor" /></svg><i class="pc-load"></i></span>
-          </div>
-          <div class="pc-foot">
-            <p>Want to know when it's ready?</p>
-            <a class="link" href="#notify" data-notify>Get notified about Pro <svg class="ic"><use href="#i-arrow" /></svg></a>
+    <!-- ——— Pro ——— -->
+    <section class="pro" id="pro">
+      <div class="wrap pro-in">
+        <div class="pro-copy">
+          <p class="kicker light">Nook Pro · coming soon</p>
+          <h2>Faster, smarter, and invisible when you want it.</h2>
+          <p class="pro-sub">Pro swaps the sidebar for a small bubble, runs on a better AI model, and adds Hidden mode: no bubble, not even the dots. Just a tiny loader by your cursor that turns into a check and disappears.</p>
+          <ul class="pro-list">
+            <li><b>99%</b><span>right on 480 practice answers in 20 subjects, in our tests</span></li>
+            <li><b>~2s</b><span>for a whole page, vs 5–6s in the free sidebar</span></li>
+            <li><b>250</b><span>answers a day, planned</span></li>
+          </ul>
+          <div class="cta-row left">
+            <a class="btn btn-white btn-lg" href="#notify" data-notify>Get notified <span class="tag tag-dark">$5/mo</span></a>
+            <button class="btn btn-ghost btn-lg" type="button" id="pro-play"><svg><use href="#i-play" /></svg>Watch Pro · 0:48</button>
           </div>
         </div>
+        <div class="pro-demo" aria-hidden="true">
+          <div class="pd-page">
+            <span class="pd-l w1"></span><span class="pd-l w2"></span><span class="pd-box"><span class="pd-ans">17</span></span>
+            <span class="pd-l w3"></span><span class="pd-l w4"></span><span class="pd-box"><span class="pd-ans">3/4</span></span>
+            <span class="pd-cur"><svg viewBox="0 0 24 24"><path d="M4 2l15 8.5-6.5 1.6L9.5 19z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" /></svg><i></i></span>
+          </div>
+          <p class="pd-cap">Hidden mode: the only thing on the page is the loader by your cursor.</p>
+        </div>
       </div>
-      <figure class="story-media pro-video" data-reveal>
-        <video data-video src="assets/nook-pro.mp4" poster="assets/nook-pro-poster.jpg" preload="none" playsinline></video>
-        <button class="play" type="button" data-play="pro-video"><svg class="ic" aria-hidden="true"><use href="#i-play" /></svg>See Pro in action <span>0:48</span></button>
-      </figure>
     </section>
 
     <!-- ——— Pricing ——— -->
-    <section class="pricing wrap" id="pricing">
-      <h2 class="display sm center" data-reveal>Simple pricing</h2>
-      <p class="lede center" data-reveal style="--d:60ms">Start free today. Pro is on the way for people who want more.</p>
-      <div class="plans">
-        <article class="plan" data-reveal>
-          <p class="plan-n">Free</p>
-          <p class="plan-p"><b>$0</b><span>forever</span></p>
-          <p class="plan-d">Everything the extension does today, with your own Gemini.</p>
-          <a class="btn btn-ink btn-lg btn-block" href="#" data-store>Add to Chrome</a>
-          <ul class="plan-l">
-            <li><svg class="ic"><use href="#i-check" /></svg>What's the answer? button and ⌥⇧A</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Highlight, right-click, Ask Nook</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Answer whole page</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Auto fill and Auto copy</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>No account, no API key, and the extension collects no data</li>
-          </ul>
-        </article>
-        <article class="plan plan-pro" data-reveal style="--d:80ms">
-          <p class="plan-ribbon"><svg class="ic"><use href="#i-bolt" /></svg>Fastest way to use Nook</p>
-          <p class="plan-n">Pro <span class="soon">Coming soon</span></p>
-          <p class="plan-p"><b>$5</b><span>per month, planned</span></p>
-          <p class="plan-d">Everything in Free, with a better AI, faster answers, a hidden, invisible mode and a small bubble instead of the sidebar.</p>
-          <a class="btn btn-accent btn-lg btn-block" href="#notify" data-notify><svg class="ic"><use href="#i-bell" /></svg>Get notified</a>
-          <ul class="plan-l">
-            <li><svg class="ic"><use href="#i-check" /></svg>Answers in about 1–2 seconds</li>
-            <li class="li-strong"><svg class="ic"><use href="#i-check" /></svg>Hidden mode: invisible on the page, not even the dots</li>
-            <li class="li-strong"><svg class="ic"><use href="#i-check" /></svg>A better AI model: 99% right in our tests</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>A whole page in about 2 seconds</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Up to 250 answers a day, planned</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Highlight a question, answered in the bubble</li>
-            <li><svg class="ic"><use href="#i-check" /></svg>Shortcuts to answer and fill everything</li>
-          </ul>
-        </article>
+    <section class="sec" id="pricing">
+      <div class="wrap">
+        <p class="kicker center">Pricing</p>
+        <h2 class="center">Free forever. Pro when you want more.</h2>
+        <div class="plans">
+          <article class="plan">
+            <h3>Free</h3>
+            <p class="price">$0<span>forever</span></p>
+            <p class="plan-d">Everything the extension does today, with your own Gemini.</p>
+            <a class="btn btn-dark btn-lg btn-block" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">$0</span></a>
+            <ul class="ticks">
+              <li>One click answers with ⌥⇧A</li>
+              <li>Highlight, right-click, Ask Nook</li>
+              <li>Answer a whole page at once</li>
+              <li>Auto fill and auto copy</li>
+              <li>Gemini chat in the sidebar</li>
+              <li>No account, no data collected</li>
+            </ul>
+          </article>
+          <article class="plan plan-pro">
+            <p class="plan-flag">Coming soon</p>
+            <h3>Pro</h3>
+            <p class="price">$5<span>per month, planned</span></p>
+            <p class="plan-d">Everything in Free, faster, with a better model and Hidden mode.</p>
+            <a class="btn btn-blue btn-lg btn-block" href="#notify" data-notify>Get notified <span class="tag tag-blue">$5/mo</span></a>
+            <ul class="ticks">
+              <li>Hidden mode, invisible on the page</li>
+              <li>A better AI model, 99% in our tests</li>
+              <li>About 1–2 seconds per answer</li>
+              <li>Up to 250 answers a day</li>
+              <li>Answers in a small bubble</li>
+              <li>Shortcuts for everything</li>
+            </ul>
+          </article>
+        </div>
+
+        <table class="compare">
+          <thead><tr><th></th><th>Free</th><th>Pro</th></tr></thead>
+          <tbody>
+            <tr><td>Price</td><td>$0</td><td>$5/month, planned</td></tr>
+            <tr><td>AI model</td><td>Your Gemini</td><td>A better model, 99% in our tests</td></tr>
+            <tr><td>Whole page</td><td>~5–6 seconds</td><td>~2 seconds</td></tr>
+            <tr><td>Where it shows</td><td>The sidebar</td><td>A small bubble, or nothing (Hidden)</td></tr>
+            <tr><td>Highlight a question</td><td><svg><use href="#i-check" /></svg></td><td><svg><use href="#i-check" /></svg></td></tr>
+            <tr><td>Fill all</td><td><svg><use href="#i-check" /></svg></td><td><svg><use href="#i-check" /></svg></td></tr>
+            <tr><td>Hidden mode</td><td><svg class="no"><use href="#i-x" /></svg></td><td><svg><use href="#i-check" /></svg></td></tr>
+            <tr><td>Daily answers</td><td>Gemini's own limits</td><td>Up to 250, planned</td></tr>
+          </tbody>
+        </table>
+        <p class="fine center">Pro isn't out yet. Price and limits may change before launch. Speeds and accuracy are from our own tests on practice pages and vary.</p>
       </div>
-      <p class="fine center" data-reveal>Pro isn't available yet and nothing is charged today. The price and limits may change before launch. Speeds are from our own tests on practice pages and vary by page and connection. Leave your name and email with Get notified, and we'll reach out when Pro is ready.</p>
     </section>
 
     <!-- ——— FAQ ——— -->
-    <section class="faq-sec wrap" id="faq">
-      <h2 class="h2" data-reveal>Questions, answered</h2>
-      <div class="faq" data-reveal style="--d:60ms">
-        <details open><summary>Is Nook free?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>Yes. The free plan is everything the extension does today: one click answers, right-click Ask Nook and Answer whole page. No card and no API key. Nook uses the Gemini that comes with your Google account, so Gemini's own usage limits apply.</p></div></details>
-        <details><summary>What's Nook Pro?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>A paid plan we're building, planned at $5/month. It runs on a better AI model (99% right on 480 practice answers in 20 subjects in our tests), swaps the sidebar for a small bubble on the page, answers faster (about 1–2 seconds in our tests, and about 2 seconds for a whole page instead of 5–6), plans for up to 250 answers a day, and adds shortcuts, highlight-to-answer and a hidden mode that keeps Nook invisible on the page. The free plan isn't going away.</p></div></details>
-        <details><summary>What's hidden (invisible) mode?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>One of Pro's display modes. Normal shows the bubble and a dot beside each question, Dots shows only the dots, and Hidden makes Nook invisible: no bubble and not even the dots, just a tiny loader by your cursor that turns into a check when the answers are in, then disappears too. Double-click and the shortcuts work in every mode.</p></div></details>
-        <details><summary>How do I get Pro?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>It isn't out yet. Press Get notified and leave your name and email, and we'll reach out when it's ready. Pro will need a Nook account so we can tell who's subscribed. Nothing is charged until you choose to sign up.</p></div></details>
-        <details><summary>What data does Nook collect?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>The free extension collects none. There's no Nook account, server or analytics in it; your question goes from your browser to Gemini in your own Google account. See the <a href="privacy/">privacy policy</a>. We'll publish exactly how Pro handles data before it launches.</p></div></details>
-        <details><summary>Does it submit anything for me?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>No. Nook fills in the answer and stops. You read it, change it if you want, and press Check or Submit yourself.</p></div></details>
-        <details><summary>Is it always right?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>No AI is right every time, especially with blurry pictures or tricky wording. Check every answer, and ask Gemini in the sidebar to explain it when you want to understand it.</p></div></details>
-        <details><summary>Is it okay to use for school?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>That depends on your school and your teacher. Nook is a homework and practice helper, and you're responsible for following your school's rules and checking every answer. See the <a href="terms/">Terms</a>.</p></div></details>
-        <details><summary>Can I change the shortcut?<svg class="ic" aria-hidden="true"><use href="#i-chev" /></svg></summary><div class="faq-a"><p>Yes. The free hotkey is ⌥⇧A on Mac and Alt+Shift+A on Windows. Change it at chrome://extensions/shortcuts.</p></div></details>
+    <section class="sec sec-alt" id="faq">
+      <div class="wrap faq">
+        <div>
+          <p class="kicker">FAQ</p>
+          <h2>Questions, answered.</h2>
+          <p class="faq-more">Something else? <a href="mailto:contact.nookai@gmail.com">Email us</a>.</p>
+        </div>
+        <div class="faq-list">
+          <details open><summary>Is Nook really free?<svg><use href="#i-plus" /></svg></summary><p>Yes. One click answers, right-click Ask Nook and Answer whole page are free, with no card and no API key. Nook uses the Gemini in your Google account, so Gemini's own usage limits apply.</p></details>
+          <details><summary>What data does Nook collect?<svg><use href="#i-plus" /></svg></summary><p>The free extension collects none. There's no Nook account, server or analytics in it; your question goes from your browser to Gemini in your own Google account. See the <a href="privacy/">privacy policy</a>.</p></details>
+          <details><summary>Does it submit anything for me?<svg><use href="#i-plus" /></svg></summary><p>No. Nook fills in the answer and stops. You read it, change it if you want, and press Check or Submit yourself.</p></details>
+          <details><summary>Is it always right?<svg><use href="#i-plus" /></svg></summary><p>No AI is right every time, especially with blurry pictures or tricky wording. Check every answer, and ask Gemini in the sidebar to explain it when you want to understand it.</p></details>
+          <details><summary>What's Nook Pro, and when is it out?<svg><use href="#i-plus" /></svg></summary><p>A paid plan we're building, planned at $5/month: a better AI model, about 2 seconds for a whole page, up to 250 answers a day, shortcuts and Hidden mode. Press Get notified and we'll email you when it launches. The free plan isn't going away.</p></details>
+          <details><summary>What's Hidden mode?<svg><use href="#i-plus" /></svg></summary><p>A Pro display mode: no bubble and not even the dots on the page, just a tiny loader by your cursor that turns into a check when the answers are in, then disappears. Double-click and the shortcuts still work.</p></details>
+          <details><summary>Is it okay to use for school?<svg><use href="#i-plus" /></svg></summary><p>That depends on your school and your teacher. Nook is a homework and practice helper, and you're responsible for following your school's rules and checking every answer. See the <a href="terms/">Terms</a>.</p></details>
+          <details><summary>Can I change the shortcut?<svg><use href="#i-plus" /></svg></summary><p>Yes. It's ⌥⇧A on Mac and Alt+Shift+A on Windows. Change it at chrome://extensions/shortcuts.</p></details>
+        </div>
       </div>
     </section>
 
-    <!-- ——— Closing CTA + footer on one gradient ——— -->
-    <section class="end">
-      <div class="end-in wrap">
-        <h2 class="display light center" data-reveal>So quick, you'll forget you used to copy and paste</h2>
-        <p class="lede light center" data-reveal style="--d:60ms">Free in Chrome. No account, no key, nothing to set up.</p>
-        <div class="hero-cta" data-reveal style="--d:120ms">
-          <a class="btn btn-white btn-lg" href="#" data-store>Add to Chrome</a>
-          <a class="btn btn-ghost-light btn-lg" href="#notify" data-notify>Get notified about Pro</a>
+    <!-- ——— Final ——— -->
+    <section class="final">
+      <div class="wrap final-in">
+        <svg class="final-mark"><use href="#logo" /></svg>
+        <h2>Your next question is one shortcut away.</h2>
+        <div class="cta-row">
+          <a class="btn btn-dark btn-lg" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">Free</span></a>
+          <a class="btn btn-light btn-lg" href="#notify" data-notify>Nook Pro <span class="tag tag-soft">$5/mo</span></a>
         </div>
+        <p class="final-s">Free in Chrome · No account · Works on Mac and Windows</p>
       </div>
-      <footer class="foot wrap">
-        <div class="foot-brand">
-          <svg class="foot-mark" aria-hidden="true"><use href="#logo" /></svg>
-          <div>
-            <a class="foot-mail" href="mailto:contact.nookai@gmail.com"><svg class="ic"><use href="#i-mail" /></svg>contact.nookai@gmail.com</a>
-            <p class="foot-c">© 2026 Nook. Nook is an independent extension for Google Chrome™ and works with Google Gemini™. Not affiliated with or endorsed by Google. Google, Gemini and Chrome are trademarks of Google LLC.</p>
-          </div>
-        </div>
-        <div class="foot-col"><p>Product</p><a href="#features">Features</a><a href="#pro">Nook Pro</a><a href="#pricing">Pricing</a><a href="#" data-store>Chrome Web Store</a></div>
-        <div class="foot-col"><p>Help</p><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="mailto:contact.nookai@gmail.com">Contact</a></div>
-        <div class="foot-col"><p>Legal</p><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
-        <p class="foot-legal">Nook is provided as is. You're responsible for following your school's rules and checking every answer.</p>
-      </footer>
     </section>
   </main>
 
-  <!-- Get notified about Pro: name + email, sent with Web3Forms -->
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div class="foot-brand"><a class="brand" href="#top"><svg><use href="#logo" /></svg>Nook</a><p>The answer goes in the box.</p></div>
+      <div class="foot-cols">
+        <div><b>Product</b><a href="#how">How it works</a><a href="#features">Features</a><a href="#pro">Nook Pro</a><a href="#pricing">Pricing</a></div>
+        <div><b>Get it</b><a href="#" data-store>Chrome Web Store</a><a href="#notify" data-notify>Pro waitlist</a><a href="#faq">FAQ</a></div>
+        <div><b>Legal</b><a href="terms/">Terms</a><a href="privacy/">Privacy</a><a href="mailto:contact.nookai@gmail.com">Contact</a></div>
+      </div>
+    </div>
+    <p class="wrap foot-c">© 2026 Nook. An independent extension for Google Chrome™ that works with Google Gemini™. Not affiliated with or endorsed by Google.</p>
+  </footer>
+
+  <dialog class="vid" id="vid"><video src="assets/nook-pro.mp4" poster="assets/nook-pro-poster.jpg" controls playsinline preload="none"></video><button class="x" type="button" aria-label="Close video"><svg><use href="#i-x" /></svg></button></dialog>
+
   <dialog class="notify" id="notify" aria-labelledby="notify-title">
     <form class="nf" id="notify-form" novalidate>
-      <button class="nf-x" type="button" aria-label="Close" data-close><svg class="ic"><use href="#i-plus" /></svg></button>
-      <p class="badge"><svg class="ic"><use href="#i-bell" /></svg>Nook Pro <span class="badge-sep"></span> planned at $5/month</p>
+      <button class="x" type="button" aria-label="Close" data-close><svg><use href="#i-x" /></svg></button>
+      <p class="kicker">Nook Pro · $5/month, planned</p>
       <h2 class="nf-h" id="notify-title">Get notified when Pro is ready</h2>
-      <p class="nf-p">Leave your name and email and we'll reach out when Pro launches. Nothing is charged.</p>
+      <p class="nf-p">Leave your name and email. We'll write when Pro launches. Nothing is charged.</p>
       <label class="nf-l">Name<input name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Your name" /></label>
       <label class="nf-l">Email<input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com" /></label>
       <input type="checkbox" name="botcheck" class="nf-bot" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <p class="nf-err" role="alert"></p>
-      <button class="btn btn-accent btn-lg btn-block" type="submit">Notify me</button>
-      <p class="nf-fine">We'll only email you about Nook Pro, and you can unsubscribe any time. You must be 13 or older. <a href="privacy/">Privacy policy</a></p>
+      <button class="btn btn-dark btn-lg btn-block" type="submit">Notify me</button>
+      <p class="nf-fine">Only emails about Nook Pro; unsubscribe any time. You must be 13 or older. <a href="privacy/">Privacy policy</a></p>
     </form>
     <div class="nf-done" hidden>
-      <span class="nf-check"><svg class="ic"><use href="#i-check" /></svg></span>
+      <span class="nf-check"><svg><use href="#i-check" /></svg></span>
       <h2 class="nf-h">You're on the list</h2>
       <p class="nf-p">We'll email you when Nook Pro is ready.</p>
-      <button class="btn btn-soft btn-lg" type="button" data-close>Done</button>
+      <button class="btn btn-light btn-lg" type="button" data-close>Done</button>
     </div>
   </dialog>
 
   <script src="assets/track.js" defer></script>
-  <script src="site.js?v=v6-3" defer></script>
+  <script src="site.js?v=v10-1" defer></script>
 </body>
 </html>
