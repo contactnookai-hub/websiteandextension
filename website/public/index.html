@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nook: Free AI Homework Help on Any Page | Chrome Extension</title>
-  <meta name="description" content="Free Chrome extension for homework and practice. Press ⌥⇧A and Nook reads the question, asks your own Gemini, and puts the answer in the box. Nook Pro is coming soon at $5/month." />
+  <meta name="description" content="Free Chrome extension for homework and practice. Press ⌥⇧A and Nook reads the question, asks your own Gemini, and puts the answer in the box. Nook Pro is coming soon: $1 for the first month, then $5/month." />
   <link rel="canonical" href="https://trynook.org/" />
   <meta name="theme-color" content="#f7f7f5" />
   <meta property="og:type" content="website" />
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=v10-6" />
+  <link rel="stylesheet" href="styles.css?v=v10-17" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -49,6 +49,15 @@
     </defs>
   </svg>
 
+  <a class="sale-bar" href="#pricing" hidden>
+    <span class="snow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <span class="sale-in">
+      <span class="sale-tag"><svg class='flake' viewBox='0 0 24 24' aria-hidden='true'><g fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round'><path d='M12 2.5v19M3.8 7.25l16.4 9.5M3.8 16.75l16.4-9.5'/><path d='M9.6 4.2 12 6.4l2.4-2.2M9.6 19.8 12 17.6l2.4 2.2M4.4 10.6l3.1.9-.8 3.1M19.6 13.4l-3.1-.9.8-3.1M4.4 13.4l3.1-.9-.8-3.1M19.6 10.6l-3.1.9.8 3.1'/></g></svg>Holiday sale</span>
+      <span class="sale-txt">Nook Pro, first month <s>$10</s> <em class="gold">$1</em><span class="sep">·</span>then $5/mo</span>
+      <span class="sale-end">Ends Jan 1</span>
+      <span class="sale-go" aria-hidden="true">→</span>
+    </span>
+  </a>
   <header class="nav" id="nav">
     <div class="wrap nav-in">
       <a class="brand" href="#top" aria-label="Nook home"><svg><use href="#logo" /></svg>Nook</a>
@@ -71,7 +80,7 @@
         <p class="sub">Nook is a free Chrome extension that reads the question on your screen, asks the Gemini you already have, and types the answer right where it goes. You check it and move on.</p>
         <div class="cta-row">
           <a class="btn btn-dark btn-lg" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">Free</span></a>
-          <a class="btn btn-light btn-lg" href="#pricing">Nook Pro <span class="tag tag-soft">$5/mo</span></a>
+          <a class="btn btn-light btn-lg" href="#pricing">Nook Pro <span class="tag tag-soft">$1 first month</span></a>
         </div>
         <ul class="assure">
           <li><svg><use href="#i-check" /></svg>No account</li>
@@ -195,17 +204,28 @@
             <li><b>250</b><span>answers a day, planned</span></li>
           </ul>
           <div class="cta-row left">
-            <a class="btn btn-white btn-lg" href="#notify" data-notify>Get notified <span class="tag tag-dark">$5/mo</span></a>
+            <a class="btn btn-white btn-lg" href="#notify" data-notify>Get notified <span class="tag tag-dark">$1 first month</span></a>
             <button class="btn btn-ghost btn-lg" type="button" id="pro-play"><svg><use href="#i-play" /></svg>Watch Pro · 0:48</button>
           </div>
         </div>
-        <div class="pro-demo" aria-hidden="true">
-          <div class="pd-page">
-            <span class="pd-l w1"></span><span class="pd-l w2"></span><span class="pd-box"><span class="pd-ans">17</span></span>
-            <span class="pd-l w3"></span><span class="pd-l w4"></span><span class="pd-box"><span class="pd-ans">3/4</span></span>
-            <span class="pd-cur"><svg viewBox="0 0 24 24"><path d="M4 2l15 8.5-6.5 1.6L9.5 19z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" /></svg><i></i></span>
+        <div class="pro-demo hd" id="hd" aria-hidden="true">
+          <p class="hd-pill"><span class="hd-pill-dot"></span>Hidden mode</p>
+          <div class="hd-win">
+            <div class="hd-bar"><span class="hd-dots"><i></i><i></i><i></i></span><span class="hd-url">practice.school/bio/quiz-3</span></div>
+            <div class="hd-page">
+              <p class="hd-k">Quiz 3 · Plants</p>
+              <div class="hd-q"><p>1. What gas do plants give off?</p><span class="hd-box"><span class="hd-a">Oxygen</span></span></div>
+              <div class="hd-q"><p>2. Solve: 2x + 6 = 20</p><span class="hd-box"><span class="hd-a">x = 7</span></span></div>
+              <div class="hd-q"><p>3. Write 6/8 in lowest terms.</p><span class="hd-box"><span class="hd-a">3/4</span></span></div>
+              <span class="hd-cur"><svg viewBox="0 0 24 24"><path d="M4 2l15 8.5-6.5 1.6L9.5 19z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" /></svg><i class="hd-ld"></i></span>
+            </div>
           </div>
-          <p class="pd-cap">Hidden mode: the only thing on the page is the loader by your cursor.</p>
+          <ol class="hd-steps" id="hd-steps">
+            <li data-s="0"><b>Press ⌘⌃X.</b> Nothing pops up on the page.</li>
+            <li data-s="1"><b>A tiny loader</b> sits by your cursor while Pro answers.</li>
+            <li data-s="2"><b>It turns into a check,</b> then disappears too.</li>
+            <li data-s="3"><b>Double-click a question.</b> The answer's in the box.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -231,11 +251,13 @@
             </ul>
           </article>
           <article class="plan plan-pro">
-            <p class="plan-flag">Coming soon</p>
+            <p class="plan-flag"><span class="sale-only">Holiday sale · </span>Coming soon</p>
+            <svg class="bow sale-only" viewBox="0 0 64 44" aria-hidden="true"><path d="M32 22C24 6 6 2 5 13c-1 9 15 11 27 9z" fill="#c8323a" /><path d="M32 22c8-16 26-20 27-9 1 9-15 11-27 9z" fill="#c8323a" /><path d="M32 22C24 10 12 8 11 14c-.5 5 10 7 21 8zM32 22c8-12 20-14 21-8 .5 5-10 7-21 8z" fill="#e04b52" /><path d="M29 24l-9 18 6-2 3 4 3-14zM35 24l9 18-6-2-3 4-3-14z" fill="#b4232a" /><circle cx="32" cy="22" r="5.5" fill="#9e1c24" /></svg>
             <h3>Pro</h3>
-            <p class="price">$5<span>per month, planned</span></p>
+            <p class="price"><s class="was sale-only" title="Beta price">$10</s>$1<span>first month</span><em class="save sale-only">90% off</em></p>
+            <p class="intro">Then <b>$5/month</b>. Cancel anytime.</p>
             <p class="plan-d">Everything in Free, faster, with a better model and Hidden mode.</p>
-            <a class="btn btn-blue btn-lg btn-block" href="#notify" data-notify>Get notified <span class="tag tag-blue">$5/mo</span></a>
+            <a class="btn btn-blue btn-lg btn-block" href="#notify" data-notify>Get notified <span class="tag tag-blue">$1 first month</span></a>
             <ul class="ticks">
               <li>Hidden mode, invisible on the page</li>
               <li>A better AI model, 99% in our tests</li>
@@ -250,7 +272,7 @@
         <table class="compare">
           <thead><tr><th></th><th>Free</th><th>Pro</th></tr></thead>
           <tbody>
-            <tr><td>Price</td><td>$0</td><td>$5/month, planned</td></tr>
+            <tr><td>Price</td><td>$0</td><td>$1 the first month, then $5/month</td></tr>
             <tr><td>AI model</td><td>Your Gemini</td><td>A better model, 99% in our tests</td></tr>
             <tr><td>Whole page</td><td>~5–6 seconds</td><td>~2 seconds</td></tr>
             <tr><td>Where it shows</td><td>The sidebar</td><td>A small bubble, or nothing (Hidden)</td></tr>
@@ -260,7 +282,7 @@
             <tr><td>Daily answers</td><td>Gemini's own limits</td><td>Up to 250, planned</td></tr>
           </tbody>
         </table>
-        <p class="fine center">Pro isn't out yet. Price and limits may change before launch. Speeds and accuracy are from our own tests on practice pages and vary.</p>
+        <p class="fine center">Pro isn't out yet. <span class="sale-only">The crossed-out $10 is what a month of Pro cost in our earlier private beta, so $1 is 90% off your first month; the holiday sale ends January 1. </span>The $1 first month renews at $5/month until you cancel. Speeds and accuracy are from our own tests on practice pages and vary.</p>
       </div>
     </section>
 
@@ -277,7 +299,7 @@
           <details><summary>What data does Nook collect?<svg><use href="#i-plus" /></svg></summary><p>The free extension collects none. There's no Nook account, server or analytics in it; your question goes from your browser to Gemini in your own Google account. See the <a href="privacy/">privacy policy</a>.</p></details>
           <details><summary>Does it submit anything for me?<svg><use href="#i-plus" /></svg></summary><p>No. Nook fills in the answer and stops. You read it, change it if you want, and press Check or Submit yourself.</p></details>
           <details><summary>Is it always right?<svg><use href="#i-plus" /></svg></summary><p>No AI is right every time, especially with blurry pictures or tricky wording. Check every answer, and ask Gemini in the sidebar to explain it when you want to understand it.</p></details>
-          <details><summary>What's Nook Pro, and when is it out?<svg><use href="#i-plus" /></svg></summary><p>A paid plan we're building, planned at $5/month: a better AI model, about 2 seconds for a whole page, up to 250 answers a day, shortcuts and Hidden mode. Press Get notified and we'll email you when it launches. The free plan isn't going away.</p></details>
+          <details><summary>What's Nook Pro, and when is it out?<svg><use href="#i-plus" /></svg></summary><p>A paid plan we're building, $1 for the first month, then $5/month: a better AI model, about 2 seconds for a whole page, up to 250 answers a day, shortcuts and Hidden mode. Press Get notified and we'll email you when it launches. The free plan isn't going away.</p></details>
           <details><summary>What's Hidden mode?<svg><use href="#i-plus" /></svg></summary><p>A Pro display mode: no bubble and not even the dots on the page, just a tiny loader by your cursor that turns into a check when the answers are in, then disappears. Double-click and the shortcuts still work.</p></details>
           <details><summary>Is it okay to use for school?<svg><use href="#i-plus" /></svg></summary><p>That depends on your school and your teacher. Nook is a homework and practice helper, and you're responsible for following your school's rules and checking every answer. See the <a href="terms/">Terms</a>.</p></details>
           <details><summary>Can I change the shortcut?<svg><use href="#i-plus" /></svg></summary><p>Yes. It's ⌥⇧A on Mac and Alt+Shift+A on Windows. Change it at chrome://extensions/shortcuts.</p></details>
@@ -292,7 +314,7 @@
         <h2>Your next question is one shortcut away.</h2>
         <div class="cta-row">
           <a class="btn btn-dark btn-lg" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">Free</span></a>
-          <a class="btn btn-light btn-lg" href="#notify" data-notify>Nook Pro <span class="tag tag-soft">$5/mo</span></a>
+          <a class="btn btn-light btn-lg" href="#notify" data-notify>Nook Pro <span class="tag tag-soft">$1 first month</span></a>
         </div>
         <p class="final-s">Free in Chrome · No account · Works on Mac and Windows</p>
       </div>
@@ -316,7 +338,7 @@
   <dialog class="notify" id="notify" aria-labelledby="notify-title">
     <form class="nf" id="notify-form" novalidate>
       <button class="x" type="button" aria-label="Close" data-close><svg><use href="#i-x" /></svg></button>
-      <p class="kicker">Nook Pro · $5/month, planned</p>
+      <p class="kicker">Nook Pro · $1 first month, then $5/mo</p>
       <h2 class="nf-h" id="notify-title">Get notified when Pro is ready</h2>
       <p class="nf-p">Leave your name and email. We'll write when Pro launches. Nothing is charged.</p>
       <label class="nf-l">Name<input name="name" type="text" autocomplete="name" required maxlength="80" placeholder="Your name" /></label>
@@ -335,6 +357,6 @@
   </dialog>
 
   <script src="assets/track.js" defer></script>
-  <script src="site.js?v=v10-5" defer></script>
+  <script src="site.js?v=v10-10" defer></script>
 </body>
 </html>

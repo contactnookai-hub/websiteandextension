@@ -10,9 +10,22 @@
   }
   if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) for (const el of $$("[data-pc]")) el.textContent = el.dataset.pc;
 
+  // ——— holiday sale: on until midnight Jan 1 (Pacific), then the bar and crossed-out price go away ———
+  const SALE_ENDS = Date.parse("2027-01-01T00:00:00-08:00");
+  if (Date.now() < SALE_ENDS) {
+    document.documentElement.classList.add("sale");
+    const bar = $(".sale-bar");
+    if (bar) bar.hidden = false;
+  }
+
+  // pause looping animations in anything that's off screen
+  const offIo = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("off", !e.isIntersecting)));
+  $$(".sale-bar, .hero, .shot, .pro, #pricing").forEach((el) => offIo.observe(el));
+
   // nav border once you scroll
   const nav = $("#nav");
-  const onScroll = () => nav.classList.toggle("scrolled", scrollY > 8);
+  let navTick = 0;
+  const onScroll = () => { if (navTick) return; navTick = requestAnimationFrame(() => { navTick = 0; nav.classList.toggle("scrolled", scrollY > 8); }); };
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
@@ -122,16 +135,37 @@
     if (e.altKey && e.shiftKey && e.code === "KeyA") { e.preventDefault(); shot.scrollIntoView({ behavior: "smooth", block: "center" }); show("click", true); }
   });
 
-  // ——— Pro: hidden-mode loop ———
-  const pd = $(".pd-page");
-  if (!still) (async () => {
-    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-    for (;;) {
-      pd.className = "pd-page"; await wait(2200);
-      pd.className = "pd-page check"; await wait(1300);
-      pd.className = "pd-page check gone filled"; await wait(2600);
-    }
-  })(); else pd.classList.add("filled");
+  // ——— Pro: Hidden mode, step by step (only runs while it's on screen) ———
+  const hd = $("#hd");
+  const hdQs = $$(".hd-q", hd);
+  const hdCur = $(".hd-cur", hd);
+  const hdSteps = $$("#hd-steps li");
+  const curTo = (x, y) => { hdCur.style.left = x + "%"; hdCur.style.top = y + "%"; };
+  const hdState = (...c) => (hd.className = "pro-demo hd is-hidden " + c.join(" "));
+  const step = (n) => hdSteps.forEach((li, i) => { li.classList.toggle("on", i === n); li.classList.toggle("done", i < n); });
+  let hdOn = false, hdRun = 0;
+  const hdWait = (ms, run) => new Promise((r, x) => setTimeout(() => (run === hdRun ? r() : x()), ms));
+  async function hdLoop(run) {
+    try {
+      for (;;) {
+        hdQs.forEach((q) => q.classList.remove("filled")); curTo(62, 48); hdState(); step(-1);
+        await hdWait(900, run);
+        step(0); await hdWait(1500, run);                     // press the shortcut: nothing appears
+        step(1); hdState("loading"); await hdWait(2000, run); // the loader by the cursor
+        step(2); hdState("checked"); await hdWait(1200, run); // check…
+        hdState(); await hdWait(700, run);                    // …and gone
+        step(3);
+        const spots = [[38, 22], [34, 47], [42, 72]];
+        for (let i = 0; i < hdQs.length; i++) { curTo(...spots[i]); await hdWait(700, run); hdQs[i].classList.add("filled"); await hdWait(300, run); }
+        await hdWait(2600, run);
+      }
+    } catch { /* stopped: scrolled away */ }
+  }
+  if (still) { hdState(); step(4); hdQs.forEach((q) => q.classList.add("filled")); }
+  else new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !hdOn) { hdOn = true; hdLoop(++hdRun); }
+    else if (!e.isIntersecting && hdOn) { hdOn = false; hdRun++; }
+  }, { threshold: 0.25 }).observe(hd);
 
   // video
   const vid = $("#vid"), v = $("video", vid);
