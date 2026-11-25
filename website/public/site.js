@@ -32,10 +32,10 @@
     click: "<b>One click.</b> Press ⌥⇧A. Nook reads the question, asks Gemini and types the answer in the box.",
     highlight: "<b>Highlight.</b> Select a question, right-click, Ask Nook. The answer shows right above it.",
     page: "<b>Whole page.</b> One ask answers every question. Double-click one to fill it, or Fill all.",
-    hidden: "<b>Hidden, with Pro.</b> No sidebar, no bubble, not even the dots. Just a tiny loader by your cursor.",
+    hidden: '<b>Hidden, with Pro.</b> No sidebar, no bubble, not even the dots. Just a tiny loader by your cursor. <a class="cap-cta" href="#notify" data-notify>Get Nook Pro <span>$5/mo</span></a>',
   };
   const ORDER = ["click", "highlight", "page", "hidden"];
-  let timers = [], mode = "click", auto;
+  let timers = [], mode = "click", auto, picked = false;
   const at = (ms, fn) => timers.push(setTimeout(fn, ms));
   const move = (x, y) => { cursor.style.left = x + "%"; cursor.style.top = y + "%"; };
   const macState = (...c) => (mac.className = "browser " + c.join(" "));
@@ -58,6 +58,7 @@
     timers.forEach(clearTimeout); timers = []; clearTimeout(auto);
     for (const n in qs) qState(n);
     macState(m === "hidden" ? "no-side" : "");
+    shot.classList.toggle("is-pro", m === "hidden");
     move(60, 62);
     if (still) {
       if (m === "click") { macState("s-done"); qState(1, "filled"); }
@@ -67,14 +68,54 @@
       return;
     }
     RUN[m]();
-    auto = setTimeout(() => show(ORDER[(ORDER.indexOf(m) + 1) % ORDER.length]), byUser ? 9500 : 7600);
+    if (byUser) picked = true;
+    const next = picked ? m : ORDER[(ORDER.indexOf(m) + 1) % ORDER.length];
+    // the Hidden (Pro) demo stays up a little longer when it comes around on its own
+    auto = setTimeout(() => show(next), m === "hidden" ? 9000 : 7600);
   }
   tabs.forEach((t) => t.addEventListener("click", () => { show(t.dataset.mode, true); window.nookTrack?.("click", "demo-" + t.dataset.mode); }));
   let started = false;
   new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { shot.classList.add("in"); if (!started) { started = true; setTimeout(() => show("click"), 500); } }
+    if (e.isIntersecting) { shot.classList.add("in"); if (!started) { started = true; setTimeout(() => show(mode), 500); } }
     else if (started) { started = false; clearTimeout(auto); timers.forEach(clearTimeout); }
   }, { threshold: 0.3 }).observe(shot);
+
+  // ——— headline, played once on arrival: the keys get pressed, then "in the box" is typed into the box ———
+  const hkKeys = $$("#hk kbd");
+  const hk = $("#hk");
+  const fill = $("#fill");
+  const fillT = $(".fill-t", fill);
+  const caret = $(".caret", fill);
+  const TEXT = "in the box";
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const placeCaret = () => { caret.style.left = `calc(0.16em + ${fillT.offsetWidth}px + 0.03em)`; };
+  async function playHeadline() {
+    placeCaret();
+    await wait(450);
+    hk.classList.add("in");                       // keys rise in, one by one
+    await wait(750);
+    for (const k of hkKeys) { k.classList.add("down"); await wait(260); }   // ⌥ … ⇧ … A
+    hk.classList.add("held");                     // all three held together
+    await wait(420);
+    hkKeys.forEach((k) => k.classList.remove("down"));
+    hk.classList.remove("held");
+    hk.classList.add("fired");                    // release with a bounce
+    fill.classList.add("on", "pulse");            // the box lights up
+    await wait(420);
+    for (const ch of TEXT) {                      // each letter lands with a pop
+      const sp = document.createElement("span");
+      sp.className = "ch";
+      sp.textContent = ch === " " ? "\u00a0" : ch;
+      fillT.appendChild(sp);
+      placeCaret();
+      await wait(ch === " " ? 70 : 95);
+    }
+    await wait(250);
+    fillT.textContent = TEXT; // plain text again so the spacing matches the box exactly
+    fill.classList.add("done");                   // caret goes, check pops in
+  }
+  if (still) { fillT.textContent = TEXT; hk.classList.add("in"); fill.classList.add("on", "done"); }
+  else playHeadline();
 
   // the real shortcut replays the one-click demo
   addEventListener("keydown", (e) => {
@@ -107,7 +148,8 @@
   const WEB3FORMS_KEY = "3279cdcd-0e17-432e-b227-9991911060fd";
   const dlg = $("#notify"), form = $("#notify-form"), done = $(".nf-done", dlg), err = $(".nf-err", form), submit = $('button[type="submit"]', form);
   const openNotify = (e) => { e?.preventDefault(); form.hidden = false; done.hidden = true; err.textContent = ""; dlg.showModal(); setTimeout(() => form.elements.name.focus(), 60); window.nookTrack?.("click", "pro-notify"); };
-  $$("[data-notify]").forEach((a) => a.addEventListener("click", openNotify));
+  // delegated, so links added later (like the one in the demo caption) work too
+  document.addEventListener("click", (e) => { const a = e.target.closest("[data-notify]"); if (a) openNotify(e); });
   $$("[data-close]", dlg).forEach((b) => b.addEventListener("click", () => dlg.close()));
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
   if (location.hash === "#notify") openNotify();

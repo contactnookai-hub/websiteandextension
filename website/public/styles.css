@@ -342,3 +342,59 @@ dialog[open] { animation: pop 240ms var(--ease); }
   .js .browser { transform: none; }
   .js .rv { opacity: 1; transform: none; }
 }
+
+/* demo: Pro call-out while the Hidden tab plays */
+.cap-cta { display: inline-flex; align-items: center; gap: 7px; margin-left: 6px; padding: 4px 4px 4px 10px; border-radius: 8px; background: var(--ink); color: #fff; font-weight: 500; font-size: 13.5px; white-space: nowrap; vertical-align: 1px; }
+.cap-cta span { font: 500 12px var(--mono); padding: 3px 6px; border-radius: 5px; background: rgba(255, 255, 255, 0.16); }
+.cap-cta:hover { background: #26272c; }
+.b-pro { font: 500 12px var(--sans); padding: 4px 9px; border-radius: 999px; background: var(--ink); color: #fff; opacity: 0; transform: translateY(-3px); transition: opacity 250ms, transform 250ms; white-space: nowrap; }
+.shot.is-pro .b-pro { opacity: 1; transform: none; }
+.shot.is-pro .browser { box-shadow: 0 0 0 1.5px var(--ink), 0 30px 70px -30px rgba(20, 30, 60, 0.45); }
+.modes button[data-mode="hidden"].on { background: var(--ink); color: #fff; box-shadow: none; }
+.modes button[data-mode="hidden"].on .pro { background: var(--blue); }
+@media (max-width: 640px) { .b-pro { display: none; } }
+
+/* ——— headline: the keys get pressed, then "in the box" is typed into a box ——— */
+h1 .h-line { display: block; white-space: nowrap; }
+.hk { display: inline-flex; gap: 0.12em; margin-left: 0.08em; font-size: 0.62em; vertical-align: 0.12em; }
+.hk kbd { display: inline-grid; place-items: center; min-width: 1.18em; height: 1.18em; padding: 0 0.12em; border-radius: 0.24em; background: var(--white); color: var(--ink); font: 500 0.56em/1 var(--sans); letter-spacing: 0; box-shadow: inset 0 0 0 0.03em var(--line-2), inset 0 -0.09em 0 #e3e3de, 0 0.04em 0.08em rgba(0, 0, 0, 0.08); transition: transform 110ms var(--ease), box-shadow 110ms var(--ease), background 110ms, color 110ms; }
+.hk kbd.down { transform: translateY(0.07em); background: var(--blue-bg); color: var(--blue-2); box-shadow: inset 0 0 0 0.035em var(--blue), inset 0 -0.02em 0 #d5e0ff, 0 0 0 0.1em rgba(47, 102, 240, 0.12); }
+.fill { position: relative; display: inline-block; padding: 0 0.16em 0.04em; margin: 0 0.02em; border-radius: 0.14em; box-shadow: inset 0 0 0 0.025em var(--line-2); background: var(--white); line-height: 1.05; transition: box-shadow 260ms var(--ease); }
+.fill-size { visibility: hidden; }
+.fill-t { position: absolute; left: 0.16em; top: 0; color: var(--blue); white-space: nowrap; }
+.caret { position: absolute; top: 0.14em; width: 0.05em; height: 0.78em; background: var(--blue); border-radius: 1px; animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+.fill.on { box-shadow: inset 0 0 0 0.035em var(--blue), 0 0 0 0.1em rgba(47, 102, 240, 0.13); }
+.fill.done .caret { opacity: 0; animation: none; }
+@media (max-width: 640px) {
+  h1 .h-line { white-space: normal; }
+  .hk { font-size: 0.58em; }
+}
+.hk { font-size: 0.74em; gap: 0.1em; vertical-align: 0.06em; }
+.hk kbd { font-size: 0.46em; min-width: 1.5em; height: 1.5em; border-radius: 0.3em; }
+@media (max-width: 640px) { .hk { font-size: 0.7em; } }
+
+/* ——— headline, louder (plays once) ——— */
+.hk kbd { opacity: 0; transform: translateY(0.5em) scale(0.7); transition: transform 380ms cubic-bezier(0.34, 1.6, 0.5, 1), opacity 260ms, box-shadow 140ms, background 140ms, color 140ms; position: relative; }
+.hk.in kbd { opacity: 1; transform: none; }
+.hk.in kbd:nth-child(2) { transition-delay: 90ms; }
+.hk.in kbd:nth-child(3) { transition-delay: 180ms; }
+.hk.in kbd.down { transition-delay: 0ms; transition-duration: 90ms; transform: translateY(0.16em) scale(0.9); background: var(--blue); color: #fff; box-shadow: inset 0 0 0 0.03em var(--blue-2), 0 0 0 0.16em rgba(47, 102, 240, 0.22), 0 0.3em 1em -0.1em rgba(47, 102, 240, 0.6); }
+.hk kbd::after { content: ""; position: absolute; inset: -0.06em; border-radius: inherit; border: 0.06em solid var(--blue); opacity: 0; transform: scale(1); pointer-events: none; }
+.hk kbd.down::after { animation: ring 520ms ease-out forwards; }
+@keyframes ring { from { opacity: 0.9; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
+.hk.held kbd { transform: translateY(0.2em) scale(0.86); }
+.hk.fired kbd { animation: release 520ms cubic-bezier(0.34, 1.6, 0.5, 1); }
+.hk.fired kbd:nth-child(2) { animation-delay: 40ms; } .hk.fired kbd:nth-child(3) { animation-delay: 80ms; }
+@keyframes release { 0% { transform: translateY(0.2em) scale(0.86); } 55% { transform: translateY(-0.18em) scale(1.08); } 100% { transform: none; } }
+.fill.pulse { animation: boxpulse 900ms ease-out; }
+@keyframes boxpulse { 0% { box-shadow: inset 0 0 0 0.035em var(--blue), 0 0 0 0 rgba(47, 102, 240, 0.45); transform: scale(1); } 25% { transform: scale(1.035); } 100% { box-shadow: inset 0 0 0 0.035em var(--blue), 0 0 0 0.32em rgba(47, 102, 240, 0); transform: scale(1); } }
+.fill-t .ch { display: inline-block; animation: pop 340ms cubic-bezier(0.34, 1.6, 0.5, 1) both; }
+@keyframes pop { from { opacity: 0; transform: translateY(-0.35em) scale(1.5); filter: blur(0.06em); } to { opacity: 1; transform: none; filter: none; } }
+.fill::after { content: ""; position: absolute; right: -0.22em; top: -0.22em; width: 0.42em; height: 0.42em; border-radius: 50%; background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 62% no-repeat; box-shadow: 0 0 0 0.05em var(--bg); transform: scale(0); transition: transform 460ms cubic-bezier(0.34, 1.8, 0.5, 1); }
+.fill.done::after { transform: scale(1); }
+.fill { padding-right: 0.22em; }
+.hk { font-size: 0.82em; }
+@media (max-width: 640px) { .hk { font-size: 0.74em; } }
+.hk { font-size: 0.92em; vertical-align: 0.17em; }
+@media (max-width: 640px) { .hk { font-size: 0.82em; vertical-align: 0.12em; } }

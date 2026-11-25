@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=v10-1" />
+  <link rel="stylesheet" href="styles.css?v=v10-6" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -64,7 +64,10 @@
     <section class="hero">
       <div class="wrap hero-in">
         <a class="badge" href="#pro"><span class="badge-new">New</span>Nook Pro is coming soon <span aria-hidden="true">→</span></a>
-        <h1>One shortcut.<br />The answer's in the box.</h1>
+        <h1 aria-label="One shortcut. The answer's in the box.">
+          <span class="h-line" aria-hidden="true">One shortcut <span class="hk" id="hk"><kbd data-mac="⌥" data-pc="Alt">⌥</kbd><kbd>⇧</kbd><kbd>A</kbd></span></span>
+          <span class="h-line" aria-hidden="true">The answer's <span class="fill" id="fill"><span class="fill-size">in the box</span><span class="fill-t"></span><i class="caret"></i></span>.</span>
+        </h1>
         <p class="sub">Nook is a free Chrome extension that reads the question on your screen, asks the Gemini you already have, and types the answer right where it goes. You check it and move on.</p>
         <div class="cta-row">
           <a class="btn btn-dark btn-lg" href="#" data-store><svg><use href="#i-chrome" /></svg>Add to Chrome <span class="tag">Free</span></a>
@@ -90,7 +93,7 @@
             <div class="b-bar">
               <span class="b-dots"><i></i><i></i><i></i></span>
               <span class="b-url"><svg><use href="#i-lock" /></svg>practice.school/algebra/unit-5</span>
-              <span class="b-ext"><svg><use href="#logo" /></svg></span>
+              <span class="b-pro">Nook Pro · Hidden mode</span><span class="b-ext"><svg><use href="#logo" /></svg></span>
             </div>
             <div class="b-body">
               <div class="page">
@@ -332,6 +335,6 @@
   </dialog>
 
   <script src="assets/track.js" defer></script>
-  <script src="site.js?v=v10-1" defer></script>
+  <script src="site.js?v=v10-5" defer></script>
 </body>
 </html>
