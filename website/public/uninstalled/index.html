@@ -81,8 +81,15 @@
     .thanks .check { width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; background: #e7f6ed; color: #1a8f4e; }
     .thanks h2 { margin: 0 0 6px; font: 400 32px/1.1 var(--serif); }
     .thanks p { margin: 0 0 18px; color: var(--muted); }
-    .thanks a { display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; }
+    .thanks a { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 20px; line-height: 1.3; text-align: center; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; }
     .hp { position: absolute; left: -9999px; }
+    .pro-answer { margin: 14px 0 4px; padding: 14px 16px; border-radius: 14px; background: #0e0f12; color: #eceef2; text-align: left; }
+    .pro-answer[hidden] { display: none; }
+    .pro-answer b { display: block; font-size: 15.5px; margin-bottom: 4px; }
+    .pro-answer p { margin: 0 0 10px; font-size: 14px; line-height: 1.45; color: #b9bfcb; }
+    .pro-answer a { display: inline-block; padding: 8px 14px; border-radius: 9px; background: #eceef2; color: #0e0f12; font-weight: 600; font-size: 14px; text-decoration: none; }
+    .pro-answer a span { margin-left: 6px; font-weight: 500; color: #3b3f48; }
+    .thanks .pro-answer { margin-top: 16px; }
     @media (prefers-reduced-motion: reduce) { .card { animation: none; } }
   </style>
 </head>
@@ -111,6 +118,11 @@
           <label class="chip"><input type="radio" name="reason" value="Don't need it anymore" /><span>Don't need it anymore</span></label>
           <label class="chip"><input type="radio" name="reason" value="Other" /><span>Other</span></label>
         </fieldset>
+        <div class="pro-answer" id="pro-answer" hidden>
+          <b id="pro-answer-title">Nook Pro doesn't use a sidebar.</b>
+          <p id="pro-answer-text">The sidebar is the most common complaint we hear, so we built Pro without one. No big sidebar. It's hidden! It's faster too.</p>
+          <a href="/#pro" target="_blank" rel="noopener">See Nook Pro<span id="pro-answer-price">$1 first month</span></a>
+        </div>
         <label class="note" for="details">Anything else? <small>(optional)</small></label>
         <textarea id="details" name="details" maxlength="2000" placeholder="What went wrong, or what would have made you keep it?"></textarea>
         <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
@@ -128,6 +140,28 @@
       const version = new URLSearchParams(location.search).get("v") || "unknown";
       const form = document.getElementById("form"), btn = document.getElementById("submit"), err = document.getElementById("err");
 
+
+      // "The sidebar gets in the way" and "Too slow" are exactly what Nook Pro fixes, so say so right away.
+      const PRO_COPY = {
+        "The sidebar gets in the way": [
+          "Nook Pro doesn't use a sidebar.",
+          "The sidebar is the most common complaint we hear, so we built Pro without one. No big sidebar. It's hidden! It's faster too.",
+        ],
+        "Too slow": [
+          "Nook Pro is about 3x faster.",
+          "It answers a whole page in about 2 seconds with a better AI model, and screenshot mode answers any question you drag a box around in about 1 second. No big sidebar. It's hidden!",
+        ],
+      };
+      const proCard = document.getElementById("pro-answer");
+      if (Date.now() >= Date.parse("2027-01-01T00:00:00-08:00")) document.getElementById("pro-answer-price").textContent = "$9.99/mo";
+      form.addEventListener("change", () => {
+        const copy = PRO_COPY[form.querySelector('input[name="reason"]:checked')?.value];
+        proCard.hidden = !copy;
+        if (copy) {
+          document.getElementById("pro-answer-title").textContent = copy[0];
+          document.getElementById("pro-answer-text").textContent = copy[1];
+        }
+      });
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -155,6 +189,8 @@
           document.getElementById("card").innerHTML =
             `<div class="thanks"><div class="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>` +
             `<h2>Thank you.</h2><p>We read every answer and use it to make Nook better.</p>` +
+            // unhide a copy of the card (a string replace of " hidden" used to eat the word from "It's hidden!")
+            (PRO_COPY[reason] ? Object.assign(proCard.cloneNode(true), { hidden: false }).outerHTML : "") +
             `<a href="${STORE}" target="_blank" rel="noopener">Changed your mind? Reinstall Nook</a></div>`;
         } catch (e) {
           btn.disabled = false;

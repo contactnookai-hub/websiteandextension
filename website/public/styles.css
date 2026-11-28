@@ -522,10 +522,83 @@ html.sale .intro b { color: var(--ink); }
 .hd-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: #8ab4f8; }
 .hd-q.filled .hd-box { box-shadow: inset 0 0 0 1px var(--line-2) !important; }
 .hd-steps { list-style: none; margin: 0; padding: 0; width: 100%; max-width: 460px; display: grid; gap: 6px; counter-reset: s; }
-.hd-steps li { counter-increment: s; display: flex; align-items: baseline; gap: 10px; padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--g-muted); opacity: 0.45; transition: opacity 300ms, background 300ms, color 300ms; }
-.hd-steps li::before { content: counter(s); flex: none; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: #fff; font: 500 11.5px var(--mono); transform: translateY(-1px); }
+/* block, not flex: in a flex row the bold lead and the rest of the sentence became two squeezed columns */
+.hd-steps li { counter-increment: s; position: relative; display: block; padding: 8px 12px 8px 42px; border-radius: 10px; font-size: 14px; color: var(--g-muted); opacity: 0.45; transition: opacity 300ms, background 300ms, color 300ms; }
+.hd-steps li::before { content: counter(s); position: absolute; left: 12px; top: 9px; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: #fff; font: 500 11.5px var(--mono); }
 .hd-steps li b { color: #fff; font-weight: 600; }
 .hd-steps li.on { opacity: 1; background: rgba(255, 255, 255, 0.06); color: #c9ccd4; }
 .hd-steps li.on::before { background: var(--blue); }
 .hd-steps li.done { opacity: 0.75; }
 .hd-steps li.done::before { content: "✓"; background: var(--ok); }
+
+/* holiday deal until Jan 1, then $9.99/month (site.js adds html.sale before then) */
+.after-only { display: inline; }
+html.sale .after-only { display: none; }
+.sale-block { display: none; }
+html.sale .sale-block { display: block; }
+html.sale .after-block { display: none; }
+.was-note { display: block; margin-top: 4px; color: var(--muted); font-size: 13.5px; }
+.was-note s { color: var(--faint); }
+
+/* ——— punchier holiday pricing ——— */
+.then { margin: 6px 0 0; font-size: 17px; color: var(--ink-2); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.then s { color: var(--faint); text-decoration-thickness: 1.5px; }
+.then b { font-weight: 600; color: var(--ink); }
+.lock { font-style: normal; font: 600 12.5px var(--sans); padding: 4px 9px; border-radius: 999px; background: #e3f4ec; color: #0f6b45; }
+html.sale .then b { color: #123b2a; }
+.clock { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 16px 0 2px; padding: 10px 14px; border-radius: 12px; background: #123b2a; color: #f5efe0; }
+html.sale .clock { display: flex; }
+.clock-l { font-size: 13.5px; opacity: 0.85; }
+.clock-t { font: 600 16px var(--mono); color: #f2c14e; letter-spacing: 0.02em; white-space: nowrap; }
+.sale-txt s { color: rgba(245, 239, 224, 0.55); }
+.sale-end { min-width: 9.5em; text-align: center; }
+html.sale .plan-pro .plan-d { margin-top: 14px; }
+.then.sale-block, .clock { display: none; }
+html.sale .then.sale-block, html.sale .clock { display: flex; }
+html.sale .then.after-block { display: none; }
+
+/* free plan: what it doesn't have */
+.ticks li.no { color: var(--muted); }
+.ticks li.no::before { background: #d0434b; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7l10 10M17 7L7 17' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7l10 10M17 7L7 17' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+
+/* sale vs after: the Pro card's price lines */
+.plan-pro .then.sale-block, .plan-pro .clock.sale-block { display: none; }
+html.sale .plan-pro .then.sale-block, html.sale .plan-pro .clock.sale-block { display: flex; }
+.plan-pro .then.after-block { display: flex; }
+html.sale .plan-pro .then.after-block { display: none; }
+
+/* Pro section: what uninstallers tell us */
+.pro-quote { margin: 18px 0 22px; padding: 0 0 0 16px; border-left: 2px solid rgba(255, 255, 255, 0.28); }
+.pro-quote p { margin: 0; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 500; color: #fff; }
+.pro-quote footer { margin-top: 6px; font-size: 14px; color: rgba(255, 255, 255, 0.62); }
+
+/* the $1 is the holiday sale: say so right above the price */
+.sale-pill { display: none; margin: 14px 0 -4px; width: fit-content; padding: 4px 10px; border-radius: 999px; background: #c8323a; color: #fff; font: 600 12.5px var(--sans); letter-spacing: 0.01em; }
+html.sale .sale-pill { display: block; }
+.ticks li b { font-weight: 600; color: var(--ink); }
+
+/* demo: Screenshot (Pro): a box gets dragged around question 2, the answer pops up next to it */
+.qq { transition: opacity 300ms var(--ease); }
+.browser.s-dim .qq:not([data-q="2"]) { opacity: 0.35; }
+.snapbox { position: absolute; left: -10px; right: -10px; top: 0; bottom: 0; border: 2px solid var(--blue); border-radius: 10px; background: rgba(47, 102, 240, 0.05); opacity: 0; transform: scale(0.15); transform-origin: 0 0; transition: opacity 200ms, transform 900ms var(--ease); pointer-events: none; }
+.qq.snap-sel .snapbox, .qq.snap-ans .snapbox { opacity: 1; transform: none; }
+.qq.snap-ans .snapbox { opacity: 0.55; }
+.qq.snap-load .snapbox::after { content: ""; position: absolute; right: -10px; bottom: -10px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid rgba(47, 102, 240, 0.25); border-top-color: var(--blue); animation: snap-spin 700ms linear infinite; }
+@keyframes snap-spin { to { transform: rotate(360deg); } }
+.snapchip { position: absolute; right: -6px; top: -16px; z-index: 4; display: flex; align-items: center; gap: 8px; padding: 6px 11px; border-radius: 11px; background: #0e0f12; color: #eceef2; font-size: 13.5px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5); opacity: 0; transform: translateY(4px) scale(0.96); transition: opacity 200ms, transform 300ms var(--ease); pointer-events: none; }
+.snapchip b { font-weight: 600; }
+.snapchip span { font: 500 11px var(--mono); color: #6dd3a0; }
+.qq.snap-ans .snapchip { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .snapbox, .snapchip { transition: none; } .qq.snap-load .snapbox::after { animation: none; } }
+
+/* phones: the five demo tabs wrap to two rows instead of hiding Screenshot off the edge */
+@media (max-width: 560px) {
+  .modes { flex-wrap: wrap; justify-content: center; overflow: visible; }
+}
+/* very narrow phones (320px): the fake URL and the pricing buttons were wider than the screen */
+@media (max-width: 360px) {
+  .shot-wrap { grid-template-columns: minmax(0, 1fr); }
+  .b-url { min-width: 0; overflow: hidden; white-space: nowrap; }
+  .plan { padding-inline: 16px; }
+  .plan .btn-lg { padding-left: 12px; padding-right: 10px; gap: 7px; }
+}

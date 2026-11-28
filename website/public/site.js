@@ -10,12 +10,22 @@
   }
   if (!/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) for (const el of $$("[data-pc]")) el.textContent = el.dataset.pc;
 
-  // ——— holiday sale: on until midnight Jan 1 (Pacific), then the bar and crossed-out price go away ———
+  // ——— holiday sale: $1 first month until midnight Jan 1 (Pacific). After that the $1 offer ends. ———
   const SALE_ENDS = Date.parse("2027-01-01T00:00:00-08:00");
   if (Date.now() < SALE_ENDS) {
     document.documentElement.classList.add("sale");
     const bar = $(".sale-bar");
     if (bar) bar.hidden = false;
+    const cds = $$("[data-countdown]");
+    const pad = (n) => String(n).padStart(2, "0");
+    const tick = () => {
+      const left = Math.max(0, SALE_ENDS - Date.now());
+      const d = Math.floor(left / 864e5), hh = Math.floor(left / 36e5) % 24, mm = Math.floor(left / 6e4) % 60, ss = Math.floor(left / 1e3) % 60;
+      for (const el of cds) el.textContent = el.dataset.countdown === "short" ? (d ? `Ends in ${d}d ${pad(hh)}h` : `Ends in ${hh}h ${pad(mm)}m`) : `${d}d ${pad(hh)}h ${pad(mm)}m ${pad(ss)}s`;
+      if (!left) location.reload();
+    };
+    tick();
+    setInterval(tick, 1000);
   }
 
   // pause looping animations in anything that's off screen
@@ -41,13 +51,15 @@
   const tabs = $$(".modes button");
   const qs = Object.fromEntries($$(".qq", mac).map((q) => [q.dataset.q, q]));
   const cursor = $(".cursor", mac);
+  const bPro = $(".b-pro", mac);
   const CAPS = {
     click: "<b>One click.</b> Press ⌥⇧A. Nook reads the question, asks Gemini and types the answer in the box.",
     highlight: "<b>Highlight.</b> Select a question, right-click, Ask Nook. The answer shows right above it.",
     page: "<b>Whole page.</b> One ask answers every question. Double-click one to fill it, or Fill all.",
-    hidden: '<b>Hidden, with Pro.</b> No sidebar, no bubble, not even the dots. Just a tiny loader by your cursor. <a class="cap-cta" href="#notify" data-notify>Get Nook Pro <span>$5/mo</span></a>',
+    hidden: '<b>Hidden, with Pro.</b> No sidebar, no bubble, not even the dots. Just a tiny loader by your cursor. <a class="cap-cta" href="#notify" data-notify>Get Nook Pro <span>See pricing</span></a>',
   };
-  const ORDER = ["click", "highlight", "page", "hidden"];
+  CAPS.snap = '<b>Screenshot, with Pro.</b> Press ⌥⇧S, drag a box around any question, and the answer pops up right there in about 1 second. <a class="cap-cta" href="#notify" data-notify>Get Nook Pro <span>See pricing</span></a>';
+  const ORDER = ["click", "highlight", "page", "hidden", "snap"];
   let timers = [], mode = "click", auto, picked = false;
   const at = (ms, fn) => timers.push(setTimeout(fn, ms));
   const move = (x, y) => { cursor.style.left = x + "%"; cursor.style.top = y + "%"; };
@@ -62,6 +74,12 @@
       at(2350, () => macState("s-pill")); at(2850, () => move(22, 24)); at(3450, () => qState(1, "d-ok", "filled"));
       at(4400, () => move(104, 92)); at(5000, () => { qState(2, "d-ok", "picked"); qState(3, "d-ok", "filled"); qState(4, "d-ok", "filled"); });
     },
+    snap() {
+      move(4, 30);
+      at(800, () => { macState("no-side", "s-dim"); qState(2, "snap-sel"); move(78, 56); });
+      at(1900, () => { macState("no-side"); qState(2, "snap-sel", "snap-load"); move(86, 70); });
+      at(2800, () => qState(2, "snap-ans"));
+    },
     hidden() { move(58, 60); at(350, () => macState("no-side", "s-load")); at(2250, () => macState("no-side", "s-check")); at(3650, () => macState("no-side")); at(4050, () => move(22, 24)); at(4650, () => qState(1, "filled")); at(5250, () => move(24, 66)); at(5850, () => qState(3, "filled")); },
   };
   function show(m, byUser) {
@@ -70,27 +88,30 @@
     cap.innerHTML = CAPS[m];
     timers.forEach(clearTimeout); timers = []; clearTimeout(auto);
     for (const n in qs) qState(n);
-    macState(m === "hidden" ? "no-side" : "");
-    shot.classList.toggle("is-pro", m === "hidden");
+    macState(m === "hidden" || m === "snap" ? "no-side" : "");
+    shot.classList.toggle("is-pro", m === "hidden" || m === "snap");
+    if (m === "hidden" || m === "snap") bPro.textContent = m === "snap" ? "Nook Pro · Screenshot" : "Nook Pro · Hidden (Ghost) mode";
     move(60, 62);
     if (still) {
       if (m === "click") { macState("s-done"); qState(1, "filled"); }
       if (m === "highlight") qState(2, "bub-on", "picked");
       if (m === "page") { macState("s-pill"); for (const n in qs) qState(n, "d-ok", "filled"); qState(2, "d-ok", "picked"); }
       if (m === "hidden") { macState("no-side"); qState(1, "filled"); qState(3, "filled"); }
+      if (m === "snap") { macState("no-side"); qState(2, "snap-ans"); }
       return;
     }
     RUN[m]();
     if (byUser) picked = true;
     const next = picked ? m : ORDER[(ORDER.indexOf(m) + 1) % ORDER.length];
     // the Hidden (Pro) demo stays up a little longer when it comes around on its own
-    auto = setTimeout(() => show(next), m === "hidden" ? 9000 : 7600);
+    auto = setTimeout(() => show(next), m === "hidden" || m === "snap" ? 9000 : 7600);
   }
   tabs.forEach((t) => t.addEventListener("click", () => { show(t.dataset.mode, true); window.nookTrack?.("click", "demo-" + t.dataset.mode); }));
-  let started = false;
+  let started = false, startT;
   new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { shot.classList.add("in"); if (!started) { started = true; setTimeout(() => show(mode), 500); } }
-    else if (started) { started = false; clearTimeout(auto); timers.forEach(clearTimeout); }
+    if (e.isIntersecting) { shot.classList.add("in"); if (!started) { started = true; startT = setTimeout(() => show(mode), 500); } }
+    // scrolled past within the 500ms start delay too: cancel the pending start, or it would loop off screen
+    else if (started) { started = false; clearTimeout(startT); clearTimeout(auto); timers.forEach(clearTimeout); }
   }, { threshold: 0.3 }).observe(shot);
 
   // ——— headline, played once on arrival: the keys get pressed, then "in the box" is typed into the box ———
@@ -171,6 +192,7 @@
   const vid = $("#vid"), v = $("video", vid);
   $("#pro-play").addEventListener("click", () => { vid.showModal(); v.play().catch(() => {}); window.nookTrack?.("click", "pro-video-play"); });
   const closeVid = () => { v.pause(); vid.close(); };
+  vid.addEventListener("close", () => v.pause()); // Escape closes the dialog without closeVid
   $(".x", vid).addEventListener("click", closeVid);
   vid.addEventListener("click", (e) => { if (e.target === vid) closeVid(); });
 
